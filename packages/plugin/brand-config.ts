@@ -147,8 +147,11 @@ export function loadBrandConfig(): BrandConfig {
     side: "side.txt",
   }
 
+  const homeSizes = ["small", "medium", "large"]
+
   for (const [key, filename] of Object.entries(artSpecFiles)) {
-    const lines = readArtFile(filename) ?? (homeFallbackFile ? readArtFile(homeFallbackFile) : null)
+    const isHomeSize = homeSizes.includes(key)
+    const lines = readArtFile(filename) ?? (isHomeSize && homeFallbackFile ? readArtFile(homeFallbackFile) : null)
     if (lines) {
       config.art[key as keyof typeof config.art] = lines
     }
