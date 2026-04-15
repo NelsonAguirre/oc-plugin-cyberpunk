@@ -175,6 +175,90 @@ If you just want the themes without effects:
 }
 ```
 
+## Configuration Options
+
+The plugin supports the following configuration options in `tui.json`:
+
+```json
+{
+  "$schema": "https://opencode.ai/tui.json",
+  "theme": "neo-rose",
+  "plugin": [
+    [
+      "~/.config/opencode/oc-neo-terminal-dev/packages/plugin",
+      {
+        "enabled": true,
+        "scanlines": true,
+        "scanline_speed": 0.008,
+        "vignette": 0.65,
+        "sidebar": true
+      }
+    ]
+  ]
+}
+```
+
+### Available Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `enabled` | `boolean` | `true` | Enable/disable the plugin entirely |
+| `scanlines` | `boolean` | `true` | Show holographic CRT scanline effect |
+| `scanline_speed` | `number` | `0.008` | Animation speed of scanlines (0-1, higher = faster) |
+| `vignette` | `number` | `0.65` | Corner darkness intensity (0-1, higher = darker corners) |
+| `sidebar` | `boolean` | `true` | Show the NEXUS-style side panel with system metrics |
+
+### Examples
+
+**Disable scanlines but keep vignette and sidebar:**
+
+```json
+{
+  "plugin": [
+    [
+      "~/.config/opencode/oc-neo-terminal-dev/packages/plugin",
+      {
+        "scanlines": false,
+        "vignette": 0.8
+      }
+    ]
+  ]
+}
+```
+
+**Minimal mode (no effects, no sidebar):**
+
+```json
+{
+  "plugin": [
+    [
+      "~/.config/opencode/oc-neo-terminal-dev/packages/plugin",
+      {
+        "scanlines": false,
+        "vignette": 0,
+        "sidebar": false
+      }
+    ]
+  ]
+}
+```
+
+**Fast scanlines with strong vignette:**
+
+```json
+{
+  "plugin": [
+    [
+      "~/.config/opencode/oc-neo-terminal-dev/packages/plugin",
+      {
+        "scanline_speed": 0.02,
+        "vignette": 0.9
+      }
+    ]
+  ]
+}
+```
+
 ## Packages
 
 ### Plugin (`packages/plugin/`)
