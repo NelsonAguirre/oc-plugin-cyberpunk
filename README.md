@@ -65,9 +65,9 @@ Futuristic cyan with electric blue and magenta accents.
 
 ## Customization
 
-You can customize the brand name and ASCII art. Here's the default NEXUS branding replaced with a custom logo:
+You can customize the brand name and ASCII art. Here's an example using **"TheGlentleman"** as the brand name with custom ASCII art:
 
-<img src="assets/demo-home-custom.gif" alt="Custom branding example" width="800">
+<img src="assets/demo-home-custom.gif" alt="Custom branding example showing TheGlentleman" width="800">
 
 *Home ASCII based on [Gentleman.Dots](https://github.com/Gentleman-Programming/Gentleman.Dots) by Gentleman Programming.*
 
