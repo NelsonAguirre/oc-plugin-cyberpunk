@@ -367,7 +367,7 @@ const scan = (v: number, speed: number, enabled: boolean) => {
     if (vignette) {
       vignette.apply(buf)
     }
-  }
+  }, { dispose })
 }
 
 const tui: TuiPlugin = async (api, options) => {
@@ -388,12 +388,13 @@ const tui: TuiPlugin = async (api, options) => {
     api.kv.set(settingKey[key], next)
   }
 
-  let post: ReturnType<typeof scan> | undefined
+  let postScan: ReturnType<typeof scan> | undefined
   let live = false
   const applyScan = () => {
-    if (post) {
-      api.renderer.removePostProcessFn(post)
-      post = undefined
+    if (postScan) {
+      postScan.dispose()
+      api.renderer.removePostProcessFn(postScan)
+      postScan = undefined
     }
 
     const state = value()
@@ -408,8 +409,8 @@ const tui: TuiPlugin = async (api, options) => {
       return
     }
 
-    post = scan(state.vignette, state.scanSpeed, state.scan)
-    api.renderer.addPostProcessFn(post)
+    postScan = scan(state.vignette, state.scanSpeed, state.scan)
+    api.renderer.addPostProcessFn(postScan)
 
     if (state.scan && !live) {
       api.renderer.requestLive()
@@ -486,8 +487,9 @@ applyScan()
 
   api.lifecycle.onDispose(async () => {
     neural.dispose()
-    if (post) {
-      api.renderer.removePostProcessFn(post)
+    if (postScan) {
+      postScan.dispose()
+      api.renderer.removePostProcessFn(postScan)
     }
     if (live) {
       api.renderer.dropLive()
