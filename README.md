@@ -2,6 +2,8 @@
 
 A Neo-terminal personality matrix for OpenCode — CRT scanlines, retro-futuristic themes, neural effects, and a multi-agent dashboard.
 
+<img src="assets/demo-home.gif" alt="Neo-Terminal home screen" width="800">
+
 This is a **monorepo** containing both the plugin (functionality) and themes (visual styles).
 
 ## Structure
@@ -16,6 +18,78 @@ oc-neo-terminal/
 │       ├── neo-amber/       # Amber phosphor with gold, coral, olive
 │       └── neo-cyan/        # Cyan with electric blue and magenta
 ```
+
+## Features
+
+### Home Screen
+
+The NEXUS branding greets you on startup with adaptive ASCII art:
+
+<img src="assets/demo-home.gif" alt="Home screen" width="800">
+
+### Neural Command
+
+Type `/neural` to trigger a pulsating brain animation with glitch effects:
+
+<img src="assets/demo-neural.gif" alt="Neural command" width="800">
+
+### Sidebar Dashboard
+
+NEXUS-style monitoring dashboard with custom ASCII art sidebar:
+
+<img src="assets/demo-session-side.gif" alt="Sidebar dashboard" width="800">
+
+## Themes
+
+Four themes with distinct multi-color palettes — each role (keywords, functions, strings, etc.) has its own color for instant visual parsing:
+
+| Theme | Preview |
+|-------|---------|
+| **neo-rose** (default) | <img src="assets/demo-session-rose.gif" alt="neo-rose theme" width="400"> |
+| **neo-matrix** | <img src="assets/demo-session-matrix.gif" alt="neo-matrix theme" width="400"> |
+| **neo-amber** | <img src="assets/demo-session-amber.gif" alt="neo-amber theme" width="400"> |
+| **neo-cyan** | <img src="assets/demo-session-cyan.gif" alt="neo-cyan theme" width="400"> |
+
+## Customization
+
+You can customize the brand name and ASCII art. Here's the default NEXUS branding replaced with a custom logo:
+
+<img src="assets/demo-home-custom.gif" alt="Custom branding example" width="800">
+
+Create files in `~/.config/opencode/oc-neo-terminal/`:
+
+### `brand.json`
+
+```json
+{
+  "name": "CYBER-1",
+  "home": "home.txt"
+}
+```
+
+- **`name`** — Brand name displayed in the UI (max 20 chars). Defaults to `NEXUS`.
+- **`home`** — Fallback ASCII art file used for all home sizes when a specific size file doesn't exist.
+
+### ASCII Art Files
+
+Place `.txt` files in `~/.config/opencode/oc-neo-terminal/`:
+
+| File              | Purpose                                                        |
+| ----------------- | -------------------------------------------------------------- |
+| `home-small.txt`  | Logo for terminals smaller than ~15 rows (default: 5 rows)     |
+| `home-medium.txt` | Logo for medium terminals ~15-30 rows (default: 31 rows)       |
+| `home-large.txt`  | Logo for large terminals >30 rows (default: 29 rows)           |
+| `side.txt`        | Sidebar icon that appears on the left panel (default: 11 rows) |
+
+### Resolution Priority
+
+For each home size, the plugin resolves the ASCII art in this order:
+
+1. **Specific file** — e.g. `home-medium.txt` if it exists
+2. **`home` fallback** — the file specified in `brand.json` `"home"` field
+3. **Built-in default** — the NEXUS ASCII art hardcoded in the plugin
+
+**Example**: If `brand.json` has `"home": "home.txt"` and only `home.txt` exists, that file is used for small, medium, **and** large sizes. If you later create `home-large.txt`, it takes priority for the large size while `home.txt` still covers small and medium.
 
 ## Installation
 
@@ -109,43 +183,6 @@ See [packages/plugin/README.md](packages/plugin/README.md) for plugin-specific d
 - **`neo-cyan`** - Futuristic cyan with electric blue and magenta accents
 
 See individual theme READMEs for details.
-
-## Customization
-
-You can customize the brand name and ASCII art by creating files in `~/.config/opencode/oc-neo-terminal/`:
-
-### `brand.json`
-
-```json
-{
-  "name": "CYBER-1",
-  "home": "home.txt"
-}
-```
-
-- **`name`** — Brand name displayed in the UI (max 20 chars). Defaults to `NEXUS`.
-- **`home`** — Fallback ASCII art file used for all home sizes when a specific size file doesn't exist.
-
-### ASCII Art Files
-
-Place `.txt` files in `~/.config/opencode/oc-neo-terminal/`:
-
-| File              | Purpose                                                        |
-| ----------------- | -------------------------------------------------------------- |
-| `home-small.txt`  | Logo for terminals smaller than ~15 rows (default: 5 rows)     |
-| `home-medium.txt` | Logo for medium terminals ~15-30 rows (default: 31 rows)       |
-| `home-large.txt`  | Logo for large terminals >30 rows (default: 29 rows)           |
-| `side.txt`        | Sidebar icon that appears on the left panel (default: 11 rows) |
-
-### Resolution Priority
-
-For each home size, the plugin resolves the ASCII art in this order:
-
-1. **Specific file** — e.g. `home-medium.txt` if it exists
-2. **`home` fallback** — the file specified in `brand.json` `"home"` field
-3. **Built-in default** — the NEXUS ASCII art hardcoded in the plugin
-
-**Example**: If `brand.json` has `"home": "home.txt"` and only `home.txt` exists, that file is used for small, medium, **and** large sizes. If you later create `home-large.txt`, it takes priority for the large size while `home.txt` still covers small and medium.
 
 ## Development
 
