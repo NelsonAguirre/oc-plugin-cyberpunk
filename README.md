@@ -43,11 +43,15 @@ Four themes with distinct multi-color palettes — each syntax role (keywords, f
 
 Neon pink + cyan + violet accents on dark void.
 
+![#ff4da6](https://img.shields.io/badge/-ff4da6-ff4da6?style=flat-square) ![#00f0ff](https://img.shields.io/badge/-00f0ff-00f0ff?style=flat-square) ![#bd34fe](https://img.shields.io/badge/-bd34fe-bd34fe?style=flat-square) ![#fcee0a](https://img.shields.io/badge/-fcee0a-fcee0a?style=flat-square) ![#39ff14](https://img.shields.io/badge/-39ff14-39ff14?style=flat-square)
+
 <img src="assets/demo-session-rose.gif" alt="neo-rose theme" width="800">
 
 ### neo-matrix
 
 Classic green with teal, lime neon, and violet accents.
+
+![#20C20E](https://img.shields.io/badge/-20C20E-20C20E?style=flat-square) ![#00D4AA](https://img.shields.io/badge/-00D4AA-00D4AA?style=flat-square) ![#AAFF00](https://img.shields.io/badge/-AAFF00-AAFF00?style=flat-square) ![#7C3AED](https://img.shields.io/badge/-7C3AED-7C3AED?style=flat-square)
 
 <img src="assets/demo-session-matrix.gif" alt="neo-matrix theme" width="800">
 
@@ -55,11 +59,15 @@ Classic green with teal, lime neon, and violet accents.
 
 Vintage amber phosphor with gold, coral, and olive accents.
 
+![#FFB000](https://img.shields.io/badge/-FFB000-FFB000?style=flat-square) ![#FFD700](https://img.shields.io/badge/-FFD700-FFD700?style=flat-square) ![#FF6B35](https://img.shields.io/badge/-FF6B35-FF6B35?style=flat-square) ![#BADA55](https://img.shields.io/badge/-BADA55-BADA55?style=flat-square)
+
 <img src="assets/demo-session-amber.gif" alt="neo-amber theme" width="800">
 
 ### neo-cyan
 
 Futuristic cyan with electric blue and magenta accents.
+
+![#00F0FF](https://img.shields.io/badge/-00F0FF-00F0FF?style=flat-square) ![#3B82F6](https://img.shields.io/badge/-3B82F6-3B82F6?style=flat-square) ![#2DD4BF](https://img.shields.io/badge/-2DD4BF-2DD4BF?style=flat-square) ![#D946EF](https://img.shields.io/badge/-D946EF-D946EF?style=flat-square)
 
 <img src="assets/demo-session-cyan.gif" alt="neo-cyan theme" width="800">
 
