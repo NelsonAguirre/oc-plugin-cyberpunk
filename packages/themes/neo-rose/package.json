@@ -1,20 +1,20 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "oc-theme-cyberpunk-matrix",
+  "name": "oc-theme-neo-rose",
   "version": "1.0.0",
-  "description": "Cyberpunk Matrix theme for OpenCode - Green code rain style",
+  "description": "Neo-terminal rose theme — neon pink, cyan, and violet accents on dark void",
   "type": "module",
   "keywords": [
     "opencode",
     "theme",
-    "cyberpunk",
-    "matrix",
-    "green",
-    "hacker",
-    "terminal"
+    "neo",
+    "rose",
+    "magenta",
+    "neon",
+    "dark"
   ],
   "oc-themes": [
-    "./themes/cyberpunk-matrix.json"
+    "./themes/neo-rose.json"
   ],
   "repository": {
     "type": "git",

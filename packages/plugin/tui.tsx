@@ -18,7 +18,7 @@ import { createNeuralCommand } from "./neural-command"
 import { Side } from "./side"
 import { loadBrandConfig, DEFAULT_BRAND, type BrandConfig } from "./brand-config"
 
-const id = "cyberpunk"
+const id = "neo-terminal"
 
 // Brand configuration loaded from external files or defaults
 let brandConfig: BrandConfig = DEFAULT_BRAND
@@ -371,10 +371,9 @@ const scan = (v: number, speed: number, enabled: boolean) => {
 }
 
 const tui: TuiPlugin = async (api, options) => {
-  // Load brand configuration from external files or use defaults
+  // Load brand configuration from ~/.opencode/oc-neo-terminal/ or use defaults
   try {
-    const workspaceRoot = process.cwd()
-    brandConfig = loadBrandConfig(workspaceRoot)
+    brandConfig = loadBrandConfig()
   } catch {
     // Keep default brand config if loading fails
   }
@@ -467,8 +466,8 @@ applyScan()
   // Register commands and slots, store disposables for cleanup
   const commandDisposable = api.command.register(() => [
     {
-      title: "Cyberpunk settings",
-      value: "cyberpunk.settings",
+      title: "Neo-Terminal settings",
+      value: "neo-terminal.settings",
       category: "System",
       onSelect() {
         showSettings()

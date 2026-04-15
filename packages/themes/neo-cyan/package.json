@@ -1,13 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "oc-theme-cyberpunk-cyan",
+  "name": "oc-theme-neo-cyan",
   "version": "1.0.0",
-  "description": "Cyberpunk Cyan theme for OpenCode - Futuristic AI Shell style",
+  "description": "Neo-terminal cyan theme — futuristic with electric blue and magenta accents",
   "type": "module",
   "keywords": [
     "opencode",
     "theme",
-    "cyberpunk",
+    "neo",
     "cyan",
     "blue",
     "futuristic",
@@ -16,7 +16,7 @@
     "terminal"
   ],
   "oc-themes": [
-    "./themes/cyberpunk-cyan.json"
+    "./themes/neo-cyan.json"
   ],
   "repository": {
     "type": "git",

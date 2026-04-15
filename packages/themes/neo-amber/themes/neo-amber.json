@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/theme.json",
-  "name": "cyberpunk-amber",
+  "name": "neo-amber",
   "defs": {
     "amber": "#FFB000",
     "amberBright": "#FFC107",
@@ -9,6 +9,11 @@
     "amberFaint": "#654321",
     "amberMuted": "#CD853F",
     "amberOrange": "#FF8C00",
+    "coral": "#FF6B35",
+    "gold": "#FFD700",
+    "oliveLight": "#BADA55",
+    "ivory": "#FFFACD",
+    "burntOrange": "#E65100",
     "crtBlack": "#0A0500",
     "crtPanel": "#1A0F00",
     "crtElement": "#241800",
@@ -20,28 +25,28 @@
       "light": "amber"
     },
     "secondary": {
-      "dark": "amberBright",
-      "light": "amberBright"
+      "dark": "gold",
+      "light": "gold"
     },
     "accent": {
-      "dark": "amberOrange",
-      "light": "amberOrange"
+      "dark": "coral",
+      "light": "coral"
     },
     "error": {
-      "dark": "amberBright",
-      "light": "amberBright"
+      "dark": "coral",
+      "light": "coral"
     },
     "warning": {
       "dark": "amberOrange",
       "light": "amberOrange"
     },
     "success": {
-      "dark": "amberBright",
-      "light": "amberBright"
+      "dark": "oliveLight",
+      "light": "oliveLight"
     },
     "info": {
-      "dark": "amber",
-      "light": "amber"
+      "dark": "gold",
+      "light": "gold"
     },
     "text": {
       "dark": "amber",
@@ -84,12 +89,12 @@
       "light": "crtElement"
     },
     "diffAdded": {
-      "dark": "amberBright",
-      "light": "amberBright"
+      "dark": "oliveLight",
+      "light": "oliveLight"
     },
     "diffRemoved": {
-      "dark": "amberDim",
-      "light": "amberDim"
+      "dark": "coral",
+      "light": "coral"
     },
     "diffContext": {
       "dark": "amberDark",
@@ -100,20 +105,20 @@
       "light": "amberMuted"
     },
     "diffHighlightAdded": {
-      "dark": "amberBright",
-      "light": "amberBright"
+      "dark": "oliveLight",
+      "light": "oliveLight"
     },
     "diffHighlightRemoved": {
-      "dark": "amberBright",
-      "light": "amberBright"
+      "dark": "coral",
+      "light": "coral"
     },
     "diffAddedBg": {
-      "dark": "#1A1205",
-      "light": "#1A1205"
+      "dark": "#1A1A05",
+      "light": "#1A1A05"
     },
     "diffRemovedBg": {
-      "dark": "#1A0F05",
-      "light": "#1A0F05"
+      "dark": "#1A0A05",
+      "light": "#1A0A05"
     },
     "diffContextBg": {
       "dark": "crtPanel",
@@ -124,8 +129,8 @@
       "light": "amberFaint"
     },
     "diffAddedLineNumberBg": {
-      "dark": "#0F0A03",
-      "light": "#0F0A03"
+      "dark": "#0F0F03",
+      "light": "#0F0F03"
     },
     "diffRemovedLineNumberBg": {
       "dark": "#0F0803",
@@ -136,32 +141,32 @@
       "light": "amber"
     },
     "markdownHeading": {
-      "dark": "amberBright",
-      "light": "amberBright"
+      "dark": "gold",
+      "light": "gold"
     },
     "markdownLink": {
-      "dark": "amberOrange",
-      "light": "amberOrange"
+      "dark": "coral",
+      "light": "coral"
     },
     "markdownLinkText": {
-      "dark": "amberOrange",
-      "light": "amberOrange"
+      "dark": "coral",
+      "light": "coral"
     },
     "markdownCode": {
-      "dark": "amberBright",
-      "light": "amberBright"
+      "dark": "oliveLight",
+      "light": "oliveLight"
     },
     "markdownBlockQuote": {
       "dark": "amberDim",
       "light": "amberDim"
     },
     "markdownEmph": {
-      "dark": "amberBright",
-      "light": "amberBright"
+      "dark": "coral",
+      "light": "coral"
     },
     "markdownStrong": {
-      "dark": "amberOrange",
-      "light": "amberOrange"
+      "dark": "gold",
+      "light": "gold"
     },
     "markdownHorizontalRule": {
       "dark": "amberDark",
@@ -176,44 +181,44 @@
       "light": "amberDim"
     },
     "markdownImage": {
-      "dark": "amberOrange",
-      "light": "amberOrange"
+      "dark": "coral",
+      "light": "coral"
     },
     "markdownImageText": {
-      "dark": "amberOrange",
-      "light": "amberOrange"
+      "dark": "coral",
+      "light": "coral"
     },
     "markdownCodeBlock": {
-      "dark": "amber",
-      "light": "amber"
+      "dark": "oliveLight",
+      "light": "oliveLight"
     },
     "syntaxComment": {
       "dark": "amberDark",
       "light": "amberDark"
     },
     "syntaxKeyword": {
-      "dark": "amberBright",
-      "light": "amberBright"
+      "dark": "coral",
+      "light": "coral"
     },
     "syntaxFunction": {
-      "dark": "amber",
-      "light": "amber"
+      "dark": "gold",
+      "light": "gold"
     },
     "syntaxVariable": {
       "dark": "amber",
       "light": "amber"
     },
     "syntaxString": {
-      "dark": "amberDim",
-      "light": "amberDim"
+      "dark": "oliveLight",
+      "light": "oliveLight"
     },
     "syntaxNumber": {
-      "dark": "amberOrange",
-      "light": "amberOrange"
+      "dark": "ivory",
+      "light": "ivory"
     },
     "syntaxType": {
-      "dark": "amberBright",
-      "light": "amberBright"
+      "dark": "burntOrange",
+      "light": "burntOrange"
     },
     "syntaxOperator": {
       "dark": "amberMuted",

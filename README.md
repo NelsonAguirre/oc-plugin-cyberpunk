@@ -9,12 +9,12 @@ This is a **monorepo** containing both the plugin (functionality) and themes (vi
 ```
 oc-neo-terminal/
 ├── packages/
-│   ├── plugin/              # oc-plugin-neo-terminal - Visual effects & commands
+│   ├── plugin/              # oc-neo-terminal - Visual effects & commands
 │   └── themes/
-│       ├── cyberpunk-rose/  # Pink/magenta theme
-│       ├── cyberpunk-matrix/# Green Matrix theme
-│       ├── cyberpunk-amber/ # Vintage amber phosphor
-│       └── cyberpunk-cyan/  # Futuristic AI Shell cyan
+│       ├── neo-rose/        # Neon pink + cyan + violet
+│       ├── neo-matrix/      # Green with teal, lime, and violet
+│       ├── neo-amber/       # Amber phosphor with gold, coral, olive
+│       └── neo-cyan/        # Cyan with electric blue and magenta
 ```
 
 ## Installation
@@ -47,10 +47,12 @@ Edit your `~/.config/opencode/tui.json`:
 ```json
 {
   "$schema": "https://opencode.ai/tui.json",
-  "theme": "cyberpunk-rose",
-  "plugin": ["~/.config/opencode/oc-neo-terminal/packages/plugin"]
+  "theme": "neo-rose",
+  "plugin": ["~/.config/opencode/oc-neo-terminal-dev/packages/plugin"]
 }
 ```
+
+> **Note:** Use the `-dev` symlink path for development. For production installs, use the direct repo path.
 
 ### Quick Start (Recommended)
 
@@ -59,8 +61,8 @@ Both theme and plugin together:
 ```json
 {
   "$schema": "https://opencode.ai/tui.json",
-  "theme": "cyberpunk-rose",
-  "plugin": ["~/.config/opencode/oc-neo-terminal/packages/plugin"]
+  "theme": "neo-rose",
+  "plugin": ["~/.config/opencode/oc-neo-terminal-dev/packages/plugin"]
 }
 ```
 
@@ -70,7 +72,7 @@ If you want the neo-terminal effects with a different theme:
 
 ```json
 {
-  "plugin": ["~/.config/opencode/oc-neo-terminal/packages/plugin"]
+  "plugin": ["~/.config/opencode/oc-neo-terminal-dev/packages/plugin"]
 }
 ```
 
@@ -80,7 +82,7 @@ If you just want the themes without effects:
 
 ```json
 {
-  "theme": "cyberpunk-rose"
+  "theme": "neo-rose"
 }
 ```
 
@@ -101,26 +103,49 @@ See [packages/plugin/README.md](packages/plugin/README.md) for plugin-specific d
 
 #### Available Themes
 
-- **`cyberpunk-rose`** (default) - Neon pink/magenta accents on dark void
-- **`cyberpunk-matrix`** - Green code rain Matrix style
-- **`cyberpunk-amber`** - Vintage amber phosphor terminal
-- **`cyberpunk-cyan`** - Futuristic AI Shell cyan/blue style
+- **`neo-rose`** (default) - Neon pink + cyan + violet accents on dark void
+- **`neo-matrix`** - Classic green with teal, lime neon, and violet accents
+- **`neo-amber`** - Vintage amber phosphor with gold, coral, and olive accents
+- **`neo-cyan`** - Futuristic cyan with electric blue and magenta accents
 
 See individual theme READMEs for details.
 
 ## Customization
 
-You can customize the brand name and ASCII art by creating files in `.opencode/oc-neo-terminal/` within your project:
+You can customize the brand name and ASCII art by creating files in `~/.config/opencode/oc-neo-terminal/`:
 
-- `brand.json` - `{ "name": "CYBER-1" }`
-- `home-small.txt` - Logo for terminals smaller than ~15 rows (default: 5 rows)
-- `home-medium.txt` - Logo for medium terminals ~15-30 rows (default: 31 rows)  
-- `home-large.txt` - Logo for large terminals >30 rows (default: 29 rows)
-- `side.txt` - Sidebar icon that appears on the left panel (default: 11 rows)
+### `brand.json`
 
-The plugin automatically selects the appropriate logo size based on terminal height. If a size file doesn't exist, it falls back to the next smaller size. If none exist, uses built-in defaults.
+```json
+{
+  "name": "CYBER-1",
+  "home": "home.txt"
+}
+```
 
-If files don't exist, the plugin uses the default NEXUS branding.
+- **`name`** — Brand name displayed in the UI (max 20 chars). Defaults to `NEXUS`.
+- **`home`** — Fallback ASCII art file used for all home sizes when a specific size file doesn't exist.
+
+### ASCII Art Files
+
+Place `.txt` files in `~/.config/opencode/oc-neo-terminal/`:
+
+| File              | Purpose                                                        |
+| ----------------- | -------------------------------------------------------------- |
+| `home-small.txt`  | Logo for terminals smaller than ~15 rows (default: 5 rows)     |
+| `home-medium.txt` | Logo for medium terminals ~15-30 rows (default: 31 rows)       |
+| `home-large.txt`  | Logo for large terminals >30 rows (default: 29 rows)           |
+| `side.txt`        | Sidebar icon that appears on the left panel (default: 11 rows) |
+
+### Resolution Priority
+
+For each home size, the plugin resolves the ASCII art in this order:
+
+1. **Specific file** — e.g. `home-medium.txt` if it exists
+2. **`home` fallback** — the file specified in `brand.json` `"home"` field
+3. **Built-in default** — the NEXUS ASCII art hardcoded in the plugin
+
+**Example**: If `brand.json` has `"home": "home.txt"` and only `home.txt` exists, that file is used for small, medium, **and** large sizes. If you later create `home-large.txt`, it takes priority for the large size while `home.txt` still covers small and medium.
 
 ## Development
 
@@ -131,7 +156,7 @@ To work on a specific package:
 ```bash
 cd packages/plugin
 # or
-cd packages/themes/cyberpunk-rose
+cd packages/themes/neo-rose
 ```
 
 To update after pulling changes:
@@ -157,7 +182,7 @@ Then in `tui.json`:
 
 ```json
 {
-  "theme": "cyberpunk-rose",
+  "theme": "neo-rose",
   "plugin": ["~/.config/opencode/oc-neo-terminal-dev/packages/plugin"]
 }
 ```

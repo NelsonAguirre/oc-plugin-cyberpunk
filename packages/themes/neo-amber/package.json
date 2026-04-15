@@ -1,13 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "oc-theme-cyberpunk-amber",
+  "name": "oc-theme-neo-amber",
   "version": "1.0.0",
-  "description": "Cyberpunk Amber theme for OpenCode - Vintage amber phosphor terminal style",
+  "description": "Neo-terminal amber theme — vintage phosphor with gold, coral, and olive accents",
   "type": "module",
   "keywords": [
     "opencode",
     "theme",
-    "cyberpunk",
+    "neo",
     "amber",
     "orange",
     "retro",
@@ -16,7 +16,7 @@
     "terminal"
   ],
   "oc-themes": [
-    "./themes/cyberpunk-amber.json"
+    "./themes/neo-amber.json"
   ],
   "repository": {
     "type": "git",

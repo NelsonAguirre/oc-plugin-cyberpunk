@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { readFileSync, existsSync } from "fs"
 import { join } from "path"
+import { homedir } from "os"
 
 export type BrandConfig = {
   name: string
@@ -101,14 +102,15 @@ export const DEFAULT_BRAND: BrandConfig = {
   },
 }
 
-export function loadBrandConfig(workspaceRoot: string): BrandConfig {
-  const configDir = join(workspaceRoot, ".opencode", "oc-neo-terminal")
+export function loadBrandConfig(): BrandConfig {
+  const configDir = join(homedir(), ".config", "opencode", "oc-neo-terminal")
   const config: BrandConfig = {
     name: DEFAULT_BRAND.name,
     art: { ...DEFAULT_BRAND.art },
   }
 
-  // Load brand name
+  // Load brand.json for name + optional "home" fallback
+  let homeFallbackFile: string | null = null
   const brandJsonPath = join(configDir, "brand.json")
   if (existsSync(brandJsonPath)) {
     try {
@@ -116,31 +118,39 @@ export function loadBrandConfig(workspaceRoot: string): BrandConfig {
       if (brandJson.name && typeof brandJson.name === "string") {
         config.name = brandJson.name.slice(0, 20) // Max 20 chars
       }
+      if (brandJson.home && typeof brandJson.home === "string") {
+        homeFallbackFile = brandJson.home
+      }
     } catch {
       // Invalid JSON, use default
     }
   }
 
-  // Load ASCII art files
-  const artFiles = {
+  // Helper: read lines from a text file, returns null if not found or empty
+  const readArtFile = (filename: string): string[] | null => {
+    const filepath = join(configDir, filename)
+    if (!existsSync(filepath)) return null
+    try {
+      const content = readFileSync(filepath, "utf-8")
+      const lines = content.split("\n").filter((line) => line.length > 0)
+      return lines.length > 0 ? lines : null
+    } catch {
+      return null
+    }
+  }
+
+  // Load ASCII art files — priority: specific file > home fallback > default
+  const artSpecFiles = {
     small: "home-small.txt",
     medium: "home-medium.txt",
     large: "home-large.txt",
     side: "side.txt",
   }
 
-  for (const [key, filename] of Object.entries(artFiles)) {
-    const filepath = join(configDir, filename)
-    if (existsSync(filepath)) {
-      try {
-        const content = readFileSync(filepath, "utf-8")
-        const lines = content.split("\n").filter((line) => line.length > 0)
-        if (lines.length > 0) {
-          config.art[key as keyof typeof config.art] = lines
-        }
-      } catch {
-        // File read error, use default
-      }
+  for (const [key, filename] of Object.entries(artSpecFiles)) {
+    const lines = readArtFile(filename) ?? (homeFallbackFile ? readArtFile(homeFallbackFile) : null)
+    if (lines) {
+      config.art[key as keyof typeof config.art] = lines
     }
   }
 

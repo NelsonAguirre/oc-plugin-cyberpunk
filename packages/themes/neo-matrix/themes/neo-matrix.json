@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/theme.json",
-  "name": "cyberpunk-matrix",
+  "name": "neo-matrix",
   "defs": {
     "green": "#20C20E",
     "greenBright": "#33FF33",
@@ -8,6 +8,10 @@
     "greenDark": "#0F6B0F",
     "greenFaint": "#0A4A0A",
     "greenMuted": "#2D8B2D",
+    "teal": "#00D4AA",
+    "tealDim": "#00A080",
+    "limeNeon": "#AAFF00",
+    "violetDark": "#7C3AED",
     "crtBlack": "#040D04",
     "crtPanel": "#061206",
     "crtElement": "#0A1A0A",
@@ -23,24 +27,24 @@
       "light": "greenBright"
     },
     "accent": {
-      "dark": "greenBright",
-      "light": "greenBright"
+      "dark": "teal",
+      "light": "teal"
     },
     "error": {
-      "dark": "greenBright",
-      "light": "greenBright"
+      "dark": "limeNeon",
+      "light": "limeNeon"
     },
     "warning": {
-      "dark": "greenBright",
-      "light": "greenBright"
+      "dark": "limeNeon",
+      "light": "limeNeon"
     },
     "success": {
       "dark": "greenBright",
       "light": "greenBright"
     },
     "info": {
-      "dark": "green",
-      "light": "green"
+      "dark": "teal",
+      "light": "teal"
     },
     "text": {
       "dark": "green",
@@ -87,8 +91,8 @@
       "light": "greenBright"
     },
     "diffRemoved": {
-      "dark": "greenDim",
-      "light": "greenDim"
+      "dark": "violetDark",
+      "light": "violetDark"
     },
     "diffContext": {
       "dark": "greenDark",
@@ -103,16 +107,16 @@
       "light": "greenBright"
     },
     "diffHighlightRemoved": {
-      "dark": "greenBright",
-      "light": "greenBright"
+      "dark": "violetDark",
+      "light": "violetDark"
     },
     "diffAddedBg": {
       "dark": "#061506",
       "light": "#061506"
     },
     "diffRemovedBg": {
-      "dark": "#061006",
-      "light": "#061006"
+      "dark": "#10061A",
+      "light": "#10061A"
     },
     "diffContextBg": {
       "dark": "crtPanel",
@@ -127,8 +131,8 @@
       "light": "#041004"
     },
     "diffRemovedLineNumberBg": {
-      "dark": "#050D05",
-      "light": "#050D05"
+      "dark": "#0A0410",
+      "light": "#0A0410"
     },
     "markdownText": {
       "dark": "green",
@@ -139,28 +143,28 @@
       "light": "greenBright"
     },
     "markdownLink": {
-      "dark": "greenBright",
-      "light": "greenBright"
+      "dark": "teal",
+      "light": "teal"
     },
     "markdownLinkText": {
-      "dark": "greenBright",
-      "light": "greenBright"
+      "dark": "teal",
+      "light": "teal"
     },
     "markdownCode": {
-      "dark": "greenBright",
-      "light": "greenBright"
+      "dark": "limeNeon",
+      "light": "limeNeon"
     },
     "markdownBlockQuote": {
       "dark": "greenDim",
       "light": "greenDim"
     },
     "markdownEmph": {
-      "dark": "greenBright",
-      "light": "greenBright"
+      "dark": "teal",
+      "light": "teal"
     },
     "markdownStrong": {
-      "dark": "greenBright",
-      "light": "greenBright"
+      "dark": "limeNeon",
+      "light": "limeNeon"
     },
     "markdownHorizontalRule": {
       "dark": "greenDark",
@@ -175,44 +179,44 @@
       "light": "greenDim"
     },
     "markdownImage": {
-      "dark": "greenBright",
-      "light": "greenBright"
+      "dark": "teal",
+      "light": "teal"
     },
     "markdownImageText": {
-      "dark": "greenBright",
-      "light": "greenBright"
+      "dark": "teal",
+      "light": "teal"
     },
     "markdownCodeBlock": {
-      "dark": "green",
-      "light": "green"
+      "dark": "limeNeon",
+      "light": "limeNeon"
     },
     "syntaxComment": {
       "dark": "greenDark",
       "light": "greenDark"
     },
     "syntaxKeyword": {
-      "dark": "greenBright",
-      "light": "greenBright"
+      "dark": "violetDark",
+      "light": "violetDark"
     },
     "syntaxFunction": {
-      "dark": "green",
-      "light": "green"
+      "dark": "teal",
+      "light": "teal"
     },
     "syntaxVariable": {
       "dark": "green",
       "light": "green"
     },
     "syntaxString": {
-      "dark": "greenDim",
-      "light": "greenDim"
+      "dark": "limeNeon",
+      "light": "limeNeon"
     },
     "syntaxNumber": {
       "dark": "greenBright",
       "light": "greenBright"
     },
     "syntaxType": {
-      "dark": "greenBright",
-      "light": "greenBright"
+      "dark": "tealDim",
+      "light": "tealDim"
     },
     "syntaxOperator": {
       "dark": "greenMuted",
