@@ -1,0 +1,227 @@
+{
+  "$schema": "https://opencode.ai/theme.json",
+  "name": "cyberpunk-amber",
+  "defs": {
+    "amber": "#FFB000",
+    "amberBright": "#FFC107",
+    "amberDim": "#B87333",
+    "amberDark": "#8B4513",
+    "amberFaint": "#654321",
+    "amberMuted": "#CD853F",
+    "amberOrange": "#FF8C00",
+    "crtBlack": "#0A0500",
+    "crtPanel": "#1A0F00",
+    "crtElement": "#241800",
+    "crtBorder": "#3D280A"
+  },
+  "theme": {
+    "primary": {
+      "dark": "amber",
+      "light": "amber"
+    },
+    "secondary": {
+      "dark": "amberBright",
+      "light": "amberBright"
+    },
+    "accent": {
+      "dark": "amberOrange",
+      "light": "amberOrange"
+    },
+    "error": {
+      "dark": "amberBright",
+      "light": "amberBright"
+    },
+    "warning": {
+      "dark": "amberOrange",
+      "light": "amberOrange"
+    },
+    "success": {
+      "dark": "amberBright",
+      "light": "amberBright"
+    },
+    "info": {
+      "dark": "amber",
+      "light": "amber"
+    },
+    "text": {
+      "dark": "amber",
+      "light": "amber"
+    },
+    "textMuted": {
+      "dark": "amberDim",
+      "light": "amberDim"
+    },
+    "background": {
+      "dark": "crtBlack",
+      "light": "crtBlack"
+    },
+    "backgroundPanel": {
+      "dark": "crtPanel",
+      "light": "crtPanel"
+    },
+    "backgroundElement": {
+      "dark": "crtElement",
+      "light": "crtElement"
+    },
+    "backgroundMenu": {
+      "dark": "crtElement",
+      "light": "crtElement"
+    },
+    "selectedListItemText": {
+      "dark": "crtBlack",
+      "light": "crtBlack"
+    },
+    "border": {
+      "dark": "crtBorder",
+      "light": "crtBorder"
+    },
+    "borderActive": {
+      "dark": "amber",
+      "light": "amber"
+    },
+    "borderSubtle": {
+      "dark": "crtElement",
+      "light": "crtElement"
+    },
+    "diffAdded": {
+      "dark": "amberBright",
+      "light": "amberBright"
+    },
+    "diffRemoved": {
+      "dark": "amberDim",
+      "light": "amberDim"
+    },
+    "diffContext": {
+      "dark": "amberDark",
+      "light": "amberDark"
+    },
+    "diffHunkHeader": {
+      "dark": "amberMuted",
+      "light": "amberMuted"
+    },
+    "diffHighlightAdded": {
+      "dark": "amberBright",
+      "light": "amberBright"
+    },
+    "diffHighlightRemoved": {
+      "dark": "amberBright",
+      "light": "amberBright"
+    },
+    "diffAddedBg": {
+      "dark": "#1A1205",
+      "light": "#1A1205"
+    },
+    "diffRemovedBg": {
+      "dark": "#1A0F05",
+      "light": "#1A0F05"
+    },
+    "diffContextBg": {
+      "dark": "crtPanel",
+      "light": "crtPanel"
+    },
+    "diffLineNumber": {
+      "dark": "amberFaint",
+      "light": "amberFaint"
+    },
+    "diffAddedLineNumberBg": {
+      "dark": "#0F0A03",
+      "light": "#0F0A03"
+    },
+    "diffRemovedLineNumberBg": {
+      "dark": "#0F0803",
+      "light": "#0F0803"
+    },
+    "markdownText": {
+      "dark": "amber",
+      "light": "amber"
+    },
+    "markdownHeading": {
+      "dark": "amberBright",
+      "light": "amberBright"
+    },
+    "markdownLink": {
+      "dark": "amberOrange",
+      "light": "amberOrange"
+    },
+    "markdownLinkText": {
+      "dark": "amberOrange",
+      "light": "amberOrange"
+    },
+    "markdownCode": {
+      "dark": "amberBright",
+      "light": "amberBright"
+    },
+    "markdownBlockQuote": {
+      "dark": "amberDim",
+      "light": "amberDim"
+    },
+    "markdownEmph": {
+      "dark": "amberBright",
+      "light": "amberBright"
+    },
+    "markdownStrong": {
+      "dark": "amberOrange",
+      "light": "amberOrange"
+    },
+    "markdownHorizontalRule": {
+      "dark": "amberDark",
+      "light": "amberDark"
+    },
+    "markdownListItem": {
+      "dark": "amber",
+      "light": "amber"
+    },
+    "markdownListEnumeration": {
+      "dark": "amberDim",
+      "light": "amberDim"
+    },
+    "markdownImage": {
+      "dark": "amberOrange",
+      "light": "amberOrange"
+    },
+    "markdownImageText": {
+      "dark": "amberOrange",
+      "light": "amberOrange"
+    },
+    "markdownCodeBlock": {
+      "dark": "amber",
+      "light": "amber"
+    },
+    "syntaxComment": {
+      "dark": "amberDark",
+      "light": "amberDark"
+    },
+    "syntaxKeyword": {
+      "dark": "amberBright",
+      "light": "amberBright"
+    },
+    "syntaxFunction": {
+      "dark": "amber",
+      "light": "amber"
+    },
+    "syntaxVariable": {
+      "dark": "amber",
+      "light": "amber"
+    },
+    "syntaxString": {
+      "dark": "amberDim",
+      "light": "amberDim"
+    },
+    "syntaxNumber": {
+      "dark": "amberOrange",
+      "light": "amberOrange"
+    },
+    "syntaxType": {
+      "dark": "amberBright",
+      "light": "amberBright"
+    },
+    "syntaxOperator": {
+      "dark": "amberMuted",
+      "light": "amberMuted"
+    },
+    "syntaxPunctuation": {
+      "dark": "amberDark",
+      "light": "amberDark"
+    }
+  }
+}
