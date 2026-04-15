@@ -113,12 +113,16 @@ The plugin automatically selects the appropriate logo size based on terminal hei
 
 If files don't exist, the plugin uses the default NEXUS branding.
 
+## Available Themes
+
+- `cyberpunk-rose` - Neon pink/magenta accents (default)
+- `cyberpunk-matrix` - Green code rain style
+- `cyberpunk-amber` - Vintage amber phosphor terminal
+
 ## Future Themes
 
 Additional themes planned:
 - `cyberpunk-cyan` - Electric blue accents
-- `cyberpunk-amber` - Vintage amber phosphor
-- `cyberpunk-matrix` - Green code rain style
 
 ## Development
 
