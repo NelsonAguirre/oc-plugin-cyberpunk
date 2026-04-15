@@ -1,0 +1,25 @@
+{
+  "name": "oc-cyberpunk",
+  "version": "1.0.0",
+  "description": "Cyberpunk plugin and themes for OpenCode - Monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/plugin",
+    "packages/themes/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm test --workspaces"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kommander/oc-cyberpunk.git"
+  },
+  "keywords": [
+    "opencode",
+    "cyberpunk",
+    "theme",
+    "plugin",
+    "monorepo"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "oc-theme-cyberpunk-rose",
+  "version": "1.0.0",
+  "description": "Cyberpunk theme with rose/magenta accents for OpenCode",
+  "type": "module",
+  "keywords": [
+    "opencode",
+    "theme",
+    "cyberpunk",
+    "rose",
+    "magenta",
+    "neon",
+    "dark"
+  ],
+  "oc-themes": [
+    "./themes/cyberpunk-rose.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kommander/oc-cyberpunk.git",
+    "directory": "packages/themes/cyberpunk-rose"
+  },
+  "engines": {
+    "opencode": ">=1.3.0"
+  }
+}
