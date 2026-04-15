@@ -12,7 +12,7 @@ For the complete cyberpunk-rose experience:
 
 ```json
 {
-  "plugin": ["oc-theme-cyberpunk-rose", "oc-plugin-cyberpunk"]
+  "plugin": ["oc-theme-cyberpunk-rose", "oc-neo-terminal"]
 }
 ```
 
@@ -22,7 +22,7 @@ The plugin works with any dark theme:
 
 ```json
 {
-  "plugin": ["oc-plugin-cyberpunk"]
+  "plugin": ["oc-neo-terminal"]
 }
 ```
 
@@ -50,7 +50,7 @@ Configure via `tui.json`:
 
 ## Customization
 
-You can customize the brand name and ASCII art by creating files in `.opencode/oc-plugin-cyberpunk/`:
+You can customize the brand name and ASCII art by creating files in `.opencode/oc-neo-terminal/`:
 
 ### Brand Name
 
@@ -72,7 +72,7 @@ Each file should contain one line of the ASCII art per line in the file.
 ### Example
 
 ```
-.opencode/oc-plugin-cyberpunk/
+.opencode/oc-neo-terminal/
 ├── brand.json
 ├── home-small.txt
 ├── home-medium.txt

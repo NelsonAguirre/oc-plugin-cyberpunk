@@ -1,17 +1,20 @@
-# Cyberpunk for OpenCode
+# Neo-Terminal for OpenCode
 
-A Cyberpunk personality matrix for OpenCode — holographic scanlines, neon themes, neural effects, and a multi-agent dashboard.
+A Neo-terminal personality matrix for OpenCode — CRT scanlines, retro-futuristic themes, neural effects, and a multi-agent dashboard.
 
 This is a **monorepo** containing both the plugin (functionality) and themes (visual styles).
 
 ## Structure
 
 ```
-oc-cyberpunk/
+oc-neo-terminal/
 ├── packages/
-│   ├── plugin/              # oc-plugin-cyberpunk - Visual effects & commands
+│   ├── plugin/              # oc-plugin-neo-terminal - Visual effects & commands
 │   └── themes/
-│       └── cyberpunk-rose/  # oc-theme-cyberpunk-rose - Color theme
+│       ├── cyberpunk-rose/  # Pink/magenta theme
+│       ├── cyberpunk-matrix/# Green Matrix theme
+│       ├── cyberpunk-amber/ # Vintage amber phosphor
+│       └── cyberpunk-cyan/  # Futuristic AI Shell cyan
 ```
 
 ## Installation
@@ -20,17 +23,21 @@ oc-cyberpunk/
 
 ```bash
 cd ~/.config/opencode
-git clone https://github.com/NelsonAguirre/oc-plugin-cyberpunk.git
+git clone https://github.com/NelsonAguirre/oc-neo-terminal.git
 ```
 
 Or clone anywhere and use the full path.
 
-### Step 2: Install the theme
+### Step 2: Install the themes
 
-Copy the theme file to the OpenCode themes directory:
+Symlink or copy the theme files to the OpenCode themes directory:
 
 ```bash
-cp packages/themes/cyberpunk-rose/themes/cyberpunk-rose.json ~/.config/opencode/themes/
+# Create symlinks (recommended for development)
+ln -s ~/Documents/repos/oc-neo-terminal/packages/themes/*/themes/*.json ~/.config/opencode/themes/
+
+# Or copy them
+cp packages/themes/*/themes/*.json ~/.config/opencode/themes/
 ```
 
 ### Step 3: Configure OpenCode
@@ -41,7 +48,7 @@ Edit your `~/.config/opencode/tui.json`:
 {
   "$schema": "https://opencode.ai/tui.json",
   "theme": "cyberpunk-rose",
-  "plugin": ["~/.config/opencode/oc-cyberpunk/packages/plugin"]
+  "plugin": ["~/.config/opencode/oc-neo-terminal/packages/plugin"]
 }
 ```
 
@@ -53,23 +60,23 @@ Both theme and plugin together:
 {
   "$schema": "https://opencode.ai/tui.json",
   "theme": "cyberpunk-rose",
-  "plugin": ["~/.config/opencode/oc-cyberpunk/packages/plugin"]
+  "plugin": ["~/.config/opencode/oc-neo-terminal/packages/plugin"]
 }
 ```
 
 ### Plugin Only
 
-If you want the cyberpunk effects with a different theme:
+If you want the neo-terminal effects with a different theme:
 
 ```json
 {
-  "plugin": ["~/.config/opencode/oc-cyberpunk/packages/plugin"]
+  "plugin": ["~/.config/opencode/oc-neo-terminal/packages/plugin"]
 }
 ```
 
 ### Theme Only
 
-If you just want the cyberpunk-rose colors without effects:
+If you just want the themes without effects:
 
 ```json
 {
@@ -90,18 +97,20 @@ The plugin provides:
 
 See [packages/plugin/README.md](packages/plugin/README.md) for plugin-specific docs.
 
-### Theme (`packages/themes/cyberpunk-rose/`)
+### Themes (`packages/themes/`)
 
-The theme provides:
-- **Cyberpunk Rose**: Neon pink/magenta accents on dark void background
-- **Syntax Highlighting**: Custom colors for code
-- **UI Tokens**: Consistent color scheme across the interface
+#### Available Themes
 
-See [packages/themes/cyberpunk-rose/README.md](packages/themes/cyberpunk-rose/README.md) for theme details.
+- **`cyberpunk-rose`** (default) - Neon pink/magenta accents on dark void
+- **`cyberpunk-matrix`** - Green code rain Matrix style
+- **`cyberpunk-amber`** - Vintage amber phosphor terminal
+- **`cyberpunk-cyan`** - Futuristic AI Shell cyan/blue style
+
+See individual theme READMEs for details.
 
 ## Customization
 
-You can customize the brand name and ASCII art by creating files in `.opencode/oc-plugin-cyberpunk/` within your project:
+You can customize the brand name and ASCII art by creating files in `.opencode/oc-neo-terminal/` within your project:
 
 - `brand.json` - `{ "name": "CYBER-1" }`
 - `home-small.txt` - Logo for terminals smaller than ~15 rows (default: 5 rows)
@@ -112,13 +121,6 @@ You can customize the brand name and ASCII art by creating files in `.opencode/o
 The plugin automatically selects the appropriate logo size based on terminal height. If a size file doesn't exist, it falls back to the next smaller size. If none exist, uses built-in defaults.
 
 If files don't exist, the plugin uses the default NEXUS branding.
-
-## Available Themes
-
-- `cyberpunk-rose` - Neon pink/magenta accents (default)
-- `cyberpunk-matrix` - Green code rain style
-- `cyberpunk-amber` - Vintage amber phosphor terminal
-- `cyberpunk-cyan` - Futuristic AI Shell cyan style
 
 ## Development
 
@@ -136,6 +138,28 @@ To update after pulling changes:
 
 ```bash
 git pull
+```
+
+## Development Workflow with Symlinks
+
+For development, create symlinks so changes are reflected instantly:
+
+```bash
+# Symlink the repo
+cd ~/.config/opencode
+ln -s ~/Documents/repos/oc-neo-terminal oc-neo-terminal-dev
+
+# Symlink themes
+ln -s ~/Documents/repos/oc-neo-terminal/packages/themes/*/themes/*.json themes/
+```
+
+Then in `tui.json`:
+
+```json
+{
+  "theme": "cyberpunk-rose",
+  "plugin": ["~/.config/opencode/oc-neo-terminal-dev/packages/plugin"]
+}
 ```
 
 ## License

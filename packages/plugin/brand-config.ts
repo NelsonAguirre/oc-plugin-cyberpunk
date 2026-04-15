@@ -102,7 +102,7 @@ export const DEFAULT_BRAND: BrandConfig = {
 }
 
 export function loadBrandConfig(workspaceRoot: string): BrandConfig {
-  const configDir = join(workspaceRoot, ".opencode", "oc-plugin-cyberpunk")
+  const configDir = join(workspaceRoot, ".opencode", "oc-neo-terminal")
   const config: BrandConfig = {
     name: DEFAULT_BRAND.name,
     art: { ...DEFAULT_BRAND.art },
