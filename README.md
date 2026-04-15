@@ -16,15 +16,44 @@ oc-cyberpunk/
 
 ## Installation
 
-### Quick Start (Recommended)
+### Step 1: Clone the repository
 
-Install both the theme and plugin:
+```bash
+cd ~/.config/opencode
+git clone https://github.com/kommander/oc-cyberpunk.git
+```
+
+Or clone anywhere and use the full path.
+
+### Step 2: Install the theme
+
+Copy the theme file to the OpenCode themes directory:
+
+```bash
+cp packages/themes/cyberpunk-rose/themes/cyberpunk-rose.json ~/.config/opencode/themes/
+```
+
+### Step 3: Configure OpenCode
+
+Edit your `~/.config/opencode/tui.json`:
 
 ```json
 {
   "$schema": "https://opencode.ai/tui.json",
   "theme": "cyberpunk-rose",
-  "plugin": ["oc-plugin-cyberpunk"]
+  "plugin": ["~/.config/opencode/oc-cyberpunk/packages/plugin"]
+}
+```
+
+### Quick Start (Recommended)
+
+Both theme and plugin together:
+
+```json
+{
+  "$schema": "https://opencode.ai/tui.json",
+  "theme": "cyberpunk-rose",
+  "plugin": ["~/.config/opencode/oc-cyberpunk/packages/plugin"]
 }
 ```
 
@@ -34,7 +63,7 @@ If you want the cyberpunk effects with a different theme:
 
 ```json
 {
-  "plugin": ["oc-plugin-cyberpunk"]
+  "plugin": ["~/.config/opencode/oc-cyberpunk/packages/plugin"]
 }
 ```
 
@@ -70,6 +99,18 @@ The theme provides:
 
 See [packages/themes/cyberpunk-rose/README.md](packages/themes/cyberpunk-rose/README.md) for theme details.
 
+## Customization
+
+You can customize the brand name and ASCII art by creating files in `.opencode/oc-plugin-cyberpunk/` within your project:
+
+- `brand.json` - `{ "name": "CYBER-1" }`
+- `home-small.txt` - Small logo ASCII
+- `home-medium.txt` - Medium logo ASCII
+- `home-large.txt` - Large logo ASCII
+- `side.txt` - Sidebar icon ASCII
+
+If files don't exist, the plugin uses the default NEXUS branding.
+
 ## Future Themes
 
 Additional themes planned:
@@ -79,11 +120,7 @@ Additional themes planned:
 
 ## Development
 
-This repo uses npm workspaces. To install dependencies:
-
-```bash
-npm install
-```
+This is a local monorepo. No npm publish needed.
 
 To work on a specific package:
 
@@ -91,6 +128,12 @@ To work on a specific package:
 cd packages/plugin
 # or
 cd packages/themes/cyberpunk-rose
+```
+
+To update after pulling changes:
+
+```bash
+git pull
 ```
 
 ## License
