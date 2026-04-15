@@ -20,7 +20,7 @@ oc-cyberpunk/
 
 ```bash
 cd ~/.config/opencode
-git clone https://github.com/kommander/oc-cyberpunk.git
+git clone https://github.com/NelsonAguirre/oc-plugin-cyberpunk.git
 ```
 
 Or clone anywhere and use the full path.
