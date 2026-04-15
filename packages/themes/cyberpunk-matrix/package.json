@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "oc-theme-cyberpunk-matrix",
+  "version": "1.0.0",
+  "description": "Cyberpunk Matrix theme for OpenCode - Green code rain style",
+  "type": "module",
+  "keywords": [
+    "opencode",
+    "theme",
+    "cyberpunk",
+    "matrix",
+    "green",
+    "hacker",
+    "terminal"
+  ],
+  "oc-themes": [
+    "./themes/cyberpunk-matrix.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NelsonAguirre/oc-plugin-cyberpunk.git"
+  },
+  "engines": {
+    "opencode": ">=1.3.0"
+  }
+}
