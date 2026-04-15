@@ -104,10 +104,12 @@ See [packages/themes/cyberpunk-rose/README.md](packages/themes/cyberpunk-rose/RE
 You can customize the brand name and ASCII art by creating files in `.opencode/oc-plugin-cyberpunk/` within your project:
 
 - `brand.json` - `{ "name": "CYBER-1" }`
-- `home-small.txt` - Small logo ASCII
-- `home-medium.txt` - Medium logo ASCII
-- `home-large.txt` - Large logo ASCII
-- `side.txt` - Sidebar icon ASCII
+- `home-small.txt` - Logo for terminals smaller than ~15 rows (default: 5 rows)
+- `home-medium.txt` - Logo for medium terminals ~15-30 rows (default: 31 rows)  
+- `home-large.txt` - Logo for large terminals >30 rows (default: 29 rows)
+- `side.txt` - Sidebar icon that appears on the left panel (default: 11 rows)
+
+The plugin automatically selects the appropriate logo size based on terminal height. If a size file doesn't exist, it falls back to the next smaller size. If none exist, uses built-in defaults.
 
 If files don't exist, the plugin uses the default NEXUS branding.
 
