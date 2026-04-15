@@ -21,12 +21,6 @@ oc-neo-terminal/
 
 ## Features
 
-### Home Screen
-
-The NEXUS branding greets you on startup with adaptive ASCII art:
-
-<img src="assets/demo-home.gif" alt="Home screen" width="800">
-
 ### Neural Command
 
 Type `/neural` to trigger a pulsating brain animation with glitch effects:
@@ -41,14 +35,31 @@ NEXUS-style monitoring dashboard with custom ASCII art sidebar:
 
 ## Themes
 
-Four themes with distinct multi-color palettes — each role (keywords, functions, strings, etc.) has its own color for instant visual parsing:
+Four themes with distinct multi-color palettes — each syntax role (keywords, functions, strings, etc.) has its own color for instant visual parsing.
 
-| Theme | Preview |
-|-------|---------|
-| **neo-rose** (default) | <img src="assets/demo-session-rose.gif" alt="neo-rose theme" width="400"> |
-| **neo-matrix** | <img src="assets/demo-session-matrix.gif" alt="neo-matrix theme" width="400"> |
-| **neo-amber** | <img src="assets/demo-session-amber.gif" alt="neo-amber theme" width="400"> |
-| **neo-cyan** | <img src="assets/demo-session-cyan.gif" alt="neo-cyan theme" width="400"> |
+### neo-rose (default)
+
+Neon pink + cyan + violet accents on dark void.
+
+<img src="assets/demo-session-rose.gif" alt="neo-rose theme" width="800">
+
+### neo-matrix
+
+Classic green with teal, lime neon, and violet accents.
+
+<img src="assets/demo-session-matrix.gif" alt="neo-matrix theme" width="800">
+
+### neo-amber
+
+Vintage amber phosphor with gold, coral, and olive accents.
+
+<img src="assets/demo-session-amber.gif" alt="neo-amber theme" width="800">
+
+### neo-cyan
+
+Futuristic cyan with electric blue and magenta accents.
+
+<img src="assets/demo-session-cyan.gif" alt="neo-cyan theme" width="800">
 
 ## Customization
 
