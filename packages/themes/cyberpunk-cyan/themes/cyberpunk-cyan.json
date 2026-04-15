@@ -1,0 +1,228 @@
+{
+  "$schema": "https://opencode.ai/theme.json",
+  "name": "cyberpunk-cyan",
+  "defs": {
+    "cyan": "#00F0FF",
+    "cyanBright": "#00FFFF",
+    "cyanDim": "#00A0B0",
+    "cyanDark": "#007A8A",
+    "cyanFaint": "#004A5A",
+    "cyanMuted": "#008899",
+    "blue": "#0078D4",
+    "azure": "#00BCF2",
+    "deepBlue": "#001a1f",
+    "panelBlue": "#002028",
+    "elementBlue": "#003038",
+    "borderBlue": "#004050"
+  },
+  "theme": {
+    "primary": {
+      "dark": "cyan",
+      "light": "cyan"
+    },
+    "secondary": {
+      "dark": "azure",
+      "light": "azure"
+    },
+    "accent": {
+      "dark": "cyanBright",
+      "light": "cyanBright"
+    },
+    "error": {
+      "dark": "cyanBright",
+      "light": "cyanBright"
+    },
+    "warning": {
+      "dark": "azure",
+      "light": "azure"
+    },
+    "success": {
+      "dark": "cyanBright",
+      "light": "cyanBright"
+    },
+    "info": {
+      "dark": "blue",
+      "light": "blue"
+    },
+    "text": {
+      "dark": "cyan",
+      "light": "cyan"
+    },
+    "textMuted": {
+      "dark": "cyanDim",
+      "light": "cyanDim"
+    },
+    "background": {
+      "dark": "deepBlue",
+      "light": "deepBlue"
+    },
+    "backgroundPanel": {
+      "dark": "panelBlue",
+      "light": "panelBlue"
+    },
+    "backgroundElement": {
+      "dark": "elementBlue",
+      "light": "elementBlue"
+    },
+    "backgroundMenu": {
+      "dark": "elementBlue",
+      "light": "elementBlue"
+    },
+    "selectedListItemText": {
+      "dark": "deepBlue",
+      "light": "deepBlue"
+    },
+    "border": {
+      "dark": "borderBlue",
+      "light": "borderBlue"
+    },
+    "borderActive": {
+      "dark": "cyan",
+      "light": "cyan"
+    },
+    "borderSubtle": {
+      "dark": "elementBlue",
+      "light": "elementBlue"
+    },
+    "diffAdded": {
+      "dark": "cyanBright",
+      "light": "cyanBright"
+    },
+    "diffRemoved": {
+      "dark": "cyanDim",
+      "light": "cyanDim"
+    },
+    "diffContext": {
+      "dark": "cyanDark",
+      "light": "cyanDark"
+    },
+    "diffHunkHeader": {
+      "dark": "cyanMuted",
+      "light": "cyanMuted"
+    },
+    "diffHighlightAdded": {
+      "dark": "cyanBright",
+      "light": "cyanBright"
+    },
+    "diffHighlightRemoved": {
+      "dark": "cyanBright",
+      "light": "cyanBright"
+    },
+    "diffAddedBg": {
+      "dark": "#001820",
+      "light": "#001820"
+    },
+    "diffRemovedBg": {
+      "dark": "#00151A",
+      "light": "#00151A"
+    },
+    "diffContextBg": {
+      "dark": "panelBlue",
+      "light": "panelBlue"
+    },
+    "diffLineNumber": {
+      "dark": "cyanFaint",
+      "light": "cyanFaint"
+    },
+    "diffAddedLineNumberBg": {
+      "dark": "#001015",
+      "light": "#001015"
+    },
+    "diffRemovedLineNumberBg": {
+      "dark": "#000D12",
+      "light": "#000D12"
+    },
+    "markdownText": {
+      "dark": "cyan",
+      "light": "cyan"
+    },
+    "markdownHeading": {
+      "dark": "cyanBright",
+      "light": "cyanBright"
+    },
+    "markdownLink": {
+      "dark": "azure",
+      "light": "azure"
+    },
+    "markdownLinkText": {
+      "dark": "azure",
+      "light": "azure"
+    },
+    "markdownCode": {
+      "dark": "cyanBright",
+      "light": "cyanBright"
+    },
+    "markdownBlockQuote": {
+      "dark": "cyanDim",
+      "light": "cyanDim"
+    },
+    "markdownEmph": {
+      "dark": "cyanBright",
+      "light": "cyanBright"
+    },
+    "markdownStrong": {
+      "dark": "azure",
+      "light": "azure"
+    },
+    "markdownHorizontalRule": {
+      "dark": "cyanDark",
+      "light": "cyanDark"
+    },
+    "markdownListItem": {
+      "dark": "cyan",
+      "light": "cyan"
+    },
+    "markdownListEnumeration": {
+      "dark": "cyanDim",
+      "light": "cyanDim"
+    },
+    "markdownImage": {
+      "dark": "azure",
+      "light": "azure"
+    },
+    "markdownImageText": {
+      "dark": "azure",
+      "light": "azure"
+    },
+    "markdownCodeBlock": {
+      "dark": "cyan",
+      "light": "cyan"
+    },
+    "syntaxComment": {
+      "dark": "cyanDark",
+      "light": "cyanDark"
+    },
+    "syntaxKeyword": {
+      "dark": "cyanBright",
+      "light": "cyanBright"
+    },
+    "syntaxFunction": {
+      "dark": "cyan",
+      "light": "cyan"
+    },
+    "syntaxVariable": {
+      "dark": "cyan",
+      "light": "cyan"
+    },
+    "syntaxString": {
+      "dark": "azure",
+      "light": "azure"
+    },
+    "syntaxNumber": {
+      "dark": "cyanBright",
+      "light": "cyanBright"
+    },
+    "syntaxType": {
+      "dark": "cyanBright",
+      "light": "cyanBright"
+    },
+    "syntaxOperator": {
+      "dark": "cyanMuted",
+      "light": "cyanMuted"
+    },
+    "syntaxPunctuation": {
+      "dark": "cyanDark",
+      "light": "cyanDark"
+    }
+  }
+}

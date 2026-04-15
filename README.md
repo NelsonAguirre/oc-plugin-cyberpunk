@@ -118,11 +118,7 @@ If files don't exist, the plugin uses the default NEXUS branding.
 - `cyberpunk-rose` - Neon pink/magenta accents (default)
 - `cyberpunk-matrix` - Green code rain style
 - `cyberpunk-amber` - Vintage amber phosphor terminal
-
-## Future Themes
-
-Additional themes planned:
-- `cyberpunk-cyan` - Electric blue accents
+- `cyberpunk-cyan` - Futuristic AI Shell cyan style
 
 ## Development
 
