@@ -33,6 +33,8 @@ NEXUS-style monitoring dashboard with custom ASCII art sidebar:
 
 <img src="assets/demo-session-side.gif" alt="Sidebar dashboard" width="800">
 
+*Sidebar ASCII based on [plugin-gentleman](https://github.com/IrrealV/plugin-gentleman) by IrrealV.*
+
 ## Themes
 
 Four themes with distinct multi-color palettes — each syntax role (keywords, functions, strings, etc.) has its own color for instant visual parsing.
@@ -66,6 +68,8 @@ Futuristic cyan with electric blue and magenta accents.
 You can customize the brand name and ASCII art. Here's the default NEXUS branding replaced with a custom logo:
 
 <img src="assets/demo-home-custom.gif" alt="Custom branding example" width="800">
+
+*Home ASCII based on [Gentleman.Dots](https://github.com/Gentleman-Programming/Gentleman.Dots) by Gentleman Programming.*
 
 Create files in `~/.config/opencode/oc-neo-terminal/`:
 
@@ -234,6 +238,15 @@ Then in `tui.json`:
   "plugin": ["~/.config/opencode/oc-neo-terminal-dev/packages/plugin"]
 }
 ```
+
+## Acknowledgments
+
+This project builds upon the foundation of **[oc-plugin-vault-tec](https://github.com/kommander/oc-plugin-vault-tec)** by [kommander](https://github.com/kommander) — the base codebase, Fallout ASCII art, and green theme concept that made this possible.
+
+### Custom ASCII Art Credits
+
+- **Home screen example**: Adapted from [Gentleman.Dots](https://github.com/Gentleman-Programming/Gentleman.Dots) by [Gentleman Programming](https://github.com/Gentleman-Programming).
+- **Sidebar example**: Adapted from [plugin-gentleman](https://github.com/IrrealV/plugin-gentleman) by [IrrealV](https://github.com/IrrealV).
 
 ## License
 
