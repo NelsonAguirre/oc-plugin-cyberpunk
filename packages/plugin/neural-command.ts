@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { TargetChannel } from "@opentui/core"
 import type { TuiPlugin } from "@opencode-ai/plugin/tui"
 

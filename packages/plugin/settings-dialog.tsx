@@ -1,4 +1,3 @@
-// @ts-nocheck
 /** @jsxImportSource @opentui/solid */
 import { useKeyboard } from "@opentui/solid"
 import type { TuiPlugin } from "@opencode-ai/plugin/tui"
@@ -93,10 +92,10 @@ export const SettingsDialog = (props: {
   flip: (key: ToggleField) => void
   tune: (key: NumberField, dir: -1 | 1) => void
 }) => {
-  const [cur, setCur] = createSignal<Field>(rows[0]?.key ?? "set")
+  const [cur, setCur] = createSignal<Field>(rows[0]?.key ?? "scan")
   const theme = createMemo(() => props.api.theme.current)
 
-  const current = createMemo(() => settingByField[cur()] ?? settingByField.set)
+  const current = createMemo(() => settingByField[cur()] ?? rows[0])
   const options = createMemo(() => {
     const value = props.value()
     return rows.map((item) => {

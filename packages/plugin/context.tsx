@@ -1,6 +1,6 @@
-// @ts-nocheck
 /** @jsxImportSource @opentui/solid */
 import type { TuiThemeCurrent, TuiPlugin } from "@opencode-ai/plugin/tui"
+import type { Message } from "@opencode-ai/sdk"
 import { createMemo, createSignal, Show } from "solid-js"
 
 type Api = Parameters<TuiPlugin>[0]
@@ -58,9 +58,9 @@ export const NexusContext = (props: { theme: TuiThemeCurrent; api: Api; sessionI
     let totalCost = 0
     let lastModelID = ""
     let lastProviderID = ""
-    let lastMsg = null
+    let lastMsg: Message | null = null
 
-    for (const [idx, msg] of messages.entries()) {
+    for (const msg of messages) {
       if (msg.role !== "assistant") continue
 
       // Track the latest valid message for model info and cumulative totals
