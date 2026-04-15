@@ -262,6 +262,7 @@ const scan = (v: number, speed: number, enabled: boolean) => {
   let time = 0
   let cachedWidth = -1
   let cachedHeight = -1
+  let disposed = false
 
   let rowBoost = new Float32Array(0)
   const activeRows = new Int32Array(MAX_ACTIVE_ROWS)
@@ -287,7 +288,12 @@ const scan = (v: number, speed: number, enabled: boolean) => {
     }
   }
 
-  return (buf: Parameters<VignetteEffect["apply"]>[0], dt: number) => {
+  const dispose = () => {
+    disposed = true
+  }
+
+  return Object.assign((buf: Parameters<VignetteEffect["apply"]>[0], dt: number) => {
+    if (disposed) return
     if (enabled) {
       const width = buf.width
       const height = buf.height

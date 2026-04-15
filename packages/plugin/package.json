@@ -9,8 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kommander/oc-cyberpunk.git",
-    "directory": "packages/plugin"
+    "url": "git+https://github.com/NelsonAguirre/oc-plugin-cyberpunk.git"
   },
   "exports": {
     "./tui": {
