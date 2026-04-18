@@ -4,21 +4,6 @@ A Neo-terminal personality matrix for OpenCode — CRT scanlines, retro-futurist
 
 <img src="assets/demo-home.gif" alt="Neo-Terminal home screen" width="800">
 
-This is a **monorepo** containing both the plugin (functionality) and themes (visual styles).
-
-## Structure
-
-```
-oc-neo-terminal/
-├── packages/
-│   ├── plugin/              # oc-neo-terminal - Visual effects & commands
-│   └── themes/
-│       ├── neo-rose.json    # Neon pink + cyan + violet
-│       ├── neo-matrix.json  # Green with teal, lime, and violet
-│       ├── neo-amber.json   # Amber phosphor with gold, coral, olive
-│       └── neo-cyan.json    # Cyan with electric blue and magenta
-```
-
 ## Features
 
 ### Neural Command
@@ -71,77 +56,51 @@ Futuristic cyan with electric blue and magenta accents.
 
 <img src="assets/demo-session-cyan.gif" alt="neo-cyan theme" width="800">
 
-## Customization
-
-You can customize the brand name and ASCII art. Here's an example using **"TheGlentleman"** as the brand name with custom ASCII art:
-
-<img src="assets/demo-home-custom.png" alt="Custom branding example showing TheGlentleman" width="800">
-
-_Home ASCII based on [Gentleman.Dots](https://github.com/Gentleman-Programming/Gentleman.Dots) by Gentleman Programming._
-
-Create files in `~/.config/opencode/oc-neo-terminal/`:
-
-### `brand.json`
-
-```json
-{
-  "name": "CYBER-1",
-  "home": "home.txt"
-}
-```
-
-- **`name`** — Brand name displayed in the UI (max 20 chars). Defaults to `NEXUS`.
-- **`home`** — Fallback ASCII art file used for all home sizes when a specific size file doesn't exist.
-
-### ASCII Art Files
-
-Place `.txt` files in `~/.config/opencode/oc-neo-terminal/`:
-
-| File              | Purpose                                                        |
-| ----------------- | -------------------------------------------------------------- |
-| `home-small.txt`  | Logo for terminals smaller than ~15 rows (default: 5 rows)     |
-| `home-medium.txt` | Logo for medium terminals ~15-30 rows (default: 31 rows)       |
-| `home-large.txt`  | Logo for large terminals >30 rows (default: 29 rows)           |
-| `side.txt`        | Sidebar icon that appears on the left panel (default: 11 rows) |
-
-### Resolution Priority
-
-For each home size, the plugin resolves the ASCII art in this order:
-
-1. **Specific file** — e.g. `home-medium.txt` if it exists
-2. **`home` fallback** — the file specified in `brand.json` `"home"` field
-3. **Built-in default** — the NEXUS ASCII art hardcoded in the plugin
-
-**Example**: If `brand.json` has `"home": "home.txt"` and only `home.txt` exists, that file is used for small, medium, **and** large sizes. If you later create `home-large.txt`, it takes priority for the large size while `home.txt` still covers small and medium.
-
 ## Installation
 
 ### Quick Start
 
-Add the plugin to your `tui.json` config:
+The fastest way to get the full experience — plugin + theme together:
 
-```json
-{
-  "$schema": "https://opencode.ai/tui.json",
-  "plugin": ["@nelsonaguirre/oc-plugin-neo-terminal"]
-}
-```
-
-OpenCode will automatically install the plugin from npm.
-
-> **Note:** The theme must be installed separately. See [Themes Only](#themes-only) below.
-
-### Global Installation
-
-Install globally using OpenCode CLI:
+1. Install the plugin via OpenCode CLI:
 
 ```bash
 opencode plugin @nelsonaguirre/oc-plugin-neo-terminal -g
 ```
 
-### Local Installation
+2. Install a theme by copying or symlinking the JSON file:
 
-For local installation in your config folder:
+```bash
+cp /path/to/oc-neo-terminal/packages/themes/neo-rose.json ~/.config/opencode/themes/
+```
+
+3. Configure both in your `tui.json`:
+
+```json
+{
+  "$schema": "https://opencode.ai/tui.json",
+  "theme": "neo-rose",
+  "plugin": ["@nelsonaguirre/oc-plugin-neo-terminal"]
+}
+```
+
+### Plugin Only
+
+If you want the neo-terminal effects with a different theme:
+
+```bash
+opencode plugin @nelsonaguirre/oc-plugin-neo-terminal -g
+```
+
+```json
+{
+  "plugin": ["@nelsonaguirre/oc-plugin-neo-terminal"]
+}
+```
+
+### Local Installation (per-project)
+
+To install the plugin only for the current project:
 
 ```bash
 opencode plugin @nelsonaguirre/oc-plugin-neo-terminal
@@ -149,17 +108,17 @@ opencode plugin @nelsonaguirre/oc-plugin-neo-terminal
 
 ### Themes Only
 
-If you only want the themes (without plugin effects), copy or symlink the theme JSONs:
+If you only want the themes without plugin effects, copy or symlink the theme JSONs to your OpenCode themes directory:
 
 ```bash
-# Symlink (recommended for easy updates)
-ln -s ~/Documents/repos/oc-neo-terminal/packages/themes/*.json ~/.config/opencode/themes/
+# Copy
+cp /path/to/oc-neo-terminal/packages/themes/neo-rose.json ~/.config/opencode/themes/
 
-# Or copy
-cp ~/Documents/repos/oc-neo-terminal/packages/themes/*.json ~/.config/opencode/themes/
+# Or symlink (recommended — updates automatically when you pull)
+ln -s /path/to/oc-neo-terminal/packages/themes/neo-rose.json ~/.config/opencode/themes/
 ```
 
-Then configure the theme:
+Then configure the theme in your `tui.json`:
 
 ```json
 {
@@ -167,9 +126,9 @@ Then configure the theme:
 }
 ```
 
-## Configuration Options
+## Configuration
 
-The plugin supports the following configuration options in `tui.json`:
+The plugin supports the following options in `tui.json`:
 
 ```json
 {
@@ -189,8 +148,6 @@ The plugin supports the following configuration options in `tui.json`:
   ]
 }
 ```
-
-### Available Options
 
 | Option           | Type      | Default | Description                                              |
 | ---------------- | --------- | ------- | -------------------------------------------------------- |
@@ -251,6 +208,80 @@ The plugin supports the following configuration options in `tui.json`:
 }
 ```
 
+## Customization
+
+You can customize the brand name and ASCII art. Here's an example using **"TheGlentleman"** as the brand name with custom ASCII art:
+
+<img src="assets/demo-home-custom.png" alt="Custom branding example showing TheGlentleman" width="800">
+
+_Home ASCII based on [Gentleman.Dots](https://github.com/Gentleman-Programming/Gentleman.Dots) by Gentleman Programming._
+
+> **Note:** This customization works regardless of how the plugin was installed — globally (`-g`), locally, or via direct path. The config is resolved at runtime by OpenCode based on where you opened it, not how the plugin was installed.
+
+### Config Locations
+
+The plugin supports two config levels — **local** (per-project) and **global** (user-wide):
+
+| Level      | Path                                          | Scope                    |
+| ---------- | --------------------------------------------- | ------------------------ |
+| **Local**  | `<project-root>/.opencode/oc-neo-terminal/`   | Only the current project |
+| **Global** | `~/.config/opencode/oc-neo-terminal/`         | All projects             |
+
+Local config always takes priority over global. Each asset (brand name, ASCII files) resolves independently.
+
+### Resolution Hierarchy
+
+For each asset, the plugin resolves in this order:
+
+1. **Local specific file** — `<project>/.opencode/oc-neo-terminal/<file>`
+2. **Local `home` fallback** — `<project>/.opencode/oc-neo-terminal/<brand.json:home>` (for home size variants)
+3. **Global specific file** — `~/.config/opencode/oc-neo-terminal/<file>`
+4. **Global `home` fallback** — `~/.config/opencode/oc-neo-terminal/<brand.json:home>`
+5. **Built-in default** — the NEXUS ASCII art hardcoded in the plugin
+
+This means you can define a global baseline and override only specific assets per project.
+
+### `brand.json`
+
+Create a `brand.json` in either config directory:
+
+```json
+{
+  "name": "CYBER-1",
+  "home": "home.txt"
+}
+```
+
+- **`name`** — Brand name displayed in the UI (max 20 chars). Defaults to `NEXUS`.
+- **`home`** — Fallback ASCII art file for all home sizes when a specific size file doesn't exist.
+
+Local `brand.json` completely overrides global `brand.json` — no merging.
+
+### ASCII Art Files
+
+Place `.txt` files in either config directory. Local files override global files of the same name.
+
+| File              | Purpose                                                        |
+| ----------------- | -------------------------------------------------------------- |
+| `home-small.txt`  | Logo for terminals smaller than ~15 rows (default: 5 rows)     |
+| `home-medium.txt` | Logo for medium terminals ~15-30 rows (default: 31 rows)       |
+| `home-large.txt`  | Logo for large terminals >30 rows (default: 29 rows)           |
+| `side.txt`        | Sidebar icon that appears on the left panel (default: 11 rows) |
+
+### Example: Global baseline + Project override
+
+```
+~/.config/opencode/oc-neo-terminal/   ← applies to all projects
+├── brand.json                         ← global brand name
+├── home.txt                           ← fallback for all sizes
+└── side.txt                           ← global sidebar art
+
+<project>/.opencode/oc-neo-terminal/  ← only this project
+└── side.txt                           ← overrides global side.txt only
+```
+
+In this example, the project uses the global brand name and home art, but its own `side.txt`.
+
 ## Acknowledgments
 
 This project builds upon the foundation of **[oc-plugin-vault-tec](https://github.com/kommander/oc-plugin-vault-tec)** by [kommander](https://github.com/kommander) — the base codebase, Fallout ASCII art, and green theme concept that made this possible.
@@ -263,4 +294,3 @@ This project builds upon the foundation of **[oc-plugin-vault-tec](https://githu
 ## License
 
 MIT
-
