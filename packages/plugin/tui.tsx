@@ -3,6 +3,7 @@ import { TargetChannel, VignetteEffect } from "@opentui/core"
 import { useTerminalDimensions } from "@opentui/solid"
 import type { TuiPlugin, TuiPluginModule, TuiSlotPlugin, TuiThemeCurrent } from "@opencode-ai/plugin/tui"
 import { Show, createMemo, createSignal } from "solid-js"
+import { join } from "path"
 import {
   SettingsDialog,
   createSettingKey,
@@ -370,9 +371,11 @@ const scan = (v: number, speed: number, enabled: boolean) => {
 }
 
 const tui: TuiPlugin = async (api, options) => {
-  // Load brand configuration from ~/.opencode/oc-neo-terminal/ or use defaults
+  // Load brand configuration with two-tier resolution: local project config wins, falls back to global
   try {
-    brandConfig = loadBrandConfig()
+    const globalDir = join(api.state.path.config, "oc-neo-terminal")
+    const localDir = join(api.state.path.directory, ".opencode", "oc-neo-terminal")
+    brandConfig = loadBrandConfig(globalDir, localDir)
   } catch {
     // Keep default brand config if loading fails
   }

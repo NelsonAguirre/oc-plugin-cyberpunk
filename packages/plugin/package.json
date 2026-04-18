@@ -1,8 +1,12 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "oc-plugin-neo-terminal",
-  "version": "0.2.0",
+  "name": "@nelsonaguirre/oc-plugin-neo-terminal",
+  "version": "1.0.1",
   "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "fmt": "oxfmt --write .",
     "fmt:check": "oxfmt --check ."

@@ -13,10 +13,10 @@ oc-neo-terminal/
 ├── packages/
 │   ├── plugin/              # oc-neo-terminal - Visual effects & commands
 │   └── themes/
-│       ├── neo-rose/        # Neon pink + cyan + violet
-│       ├── neo-matrix/      # Green with teal, lime, and violet
-│       ├── neo-amber/       # Amber phosphor with gold, coral, olive
-│       └── neo-cyan/        # Cyan with electric blue and magenta
+│       ├── neo-rose.json    # Neon pink + cyan + violet
+│       ├── neo-matrix.json  # Green with teal, lime, and violet
+│       ├── neo-amber.json   # Amber phosphor with gold, coral, olive
+│       └── neo-cyan.json    # Cyan with electric blue and magenta
 ```
 
 ## Features
@@ -33,7 +33,7 @@ NEXUS-style monitoring dashboard with custom ASCII art sidebar:
 
 <img src="assets/demo-session-side.gif" alt="Sidebar dashboard" width="800">
 
-*Sidebar ASCII based on [plugin-gentleman](https://github.com/IrrealV/plugin-gentleman) by IrrealV.*
+_Sidebar ASCII based on [plugin-gentleman](https://github.com/IrrealV/plugin-gentleman) by IrrealV._
 
 ## Themes
 
@@ -77,7 +77,7 @@ You can customize the brand name and ASCII art. Here's an example using **"TheGl
 
 <img src="assets/demo-home-custom.png" alt="Custom branding example showing TheGlentleman" width="800">
 
-*Home ASCII based on [Gentleman.Dots](https://github.com/Gentleman-Programming/Gentleman.Dots) by Gentleman Programming.*
+_Home ASCII based on [Gentleman.Dots](https://github.com/Gentleman-Programming/Gentleman.Dots) by Gentleman Programming._
 
 Create files in `~/.config/opencode/oc-neo-terminal/`:
 
@@ -116,66 +116,50 @@ For each home size, the plugin resolves the ASCII art in this order:
 
 ## Installation
 
-### Step 1: Clone the repository
+### Quick Start
 
-```bash
-cd ~/.config/opencode
-git clone https://github.com/NelsonAguirre/oc-neo-terminal.git
-```
-
-Or clone anywhere and use the full path.
-
-### Step 2: Install the themes
-
-Symlink or copy the theme files to the OpenCode themes directory:
-
-```bash
-# Create symlinks (recommended for development)
-ln -s ~/Documents/repos/oc-neo-terminal/packages/themes/*/themes/*.json ~/.config/opencode/themes/
-
-# Or copy them
-cp packages/themes/*/themes/*.json ~/.config/opencode/themes/
-```
-
-### Step 3: Configure OpenCode
-
-Edit your `~/.config/opencode/tui.json`:
+Add the plugin to your `tui.json` config:
 
 ```json
 {
   "$schema": "https://opencode.ai/tui.json",
-  "theme": "neo-rose",
-  "plugin": ["~/.config/opencode/oc-neo-terminal-dev/packages/plugin"]
+  "plugin": ["@nelsonaguirre/oc-plugin-neo-terminal"]
 }
 ```
 
-> **Note:** Use the `-dev` symlink path for development. For production installs, use the direct repo path.
+OpenCode will automatically install the plugin from npm.
 
-### Quick Start (Recommended)
+> **Note:** The theme must be installed separately. See [Themes Only](#themes-only) below.
 
-Both theme and plugin together:
+### Global Installation
 
-```json
-{
-  "$schema": "https://opencode.ai/tui.json",
-  "theme": "neo-rose",
-  "plugin": ["~/.config/opencode/oc-neo-terminal-dev/packages/plugin"]
-}
+Install globally using OpenCode CLI:
+
+```bash
+opencode plugin @nelsonaguirre/oc-plugin-neo-terminal -g
 ```
 
-### Plugin Only
+### Local Installation
 
-If you want the neo-terminal effects with a different theme:
+For local installation in your config folder:
 
-```json
-{
-  "plugin": ["~/.config/opencode/oc-neo-terminal-dev/packages/plugin"]
-}
+```bash
+opencode plugin @nelsonaguirre/oc-plugin-neo-terminal
 ```
 
-### Theme Only
+### Themes Only
 
-If you just want the themes without effects:
+If you only want the themes (without plugin effects), copy or symlink the theme JSONs:
+
+```bash
+# Symlink (recommended for easy updates)
+ln -s ~/Documents/repos/oc-neo-terminal/packages/themes/*.json ~/.config/opencode/themes/
+
+# Or copy
+cp ~/Documents/repos/oc-neo-terminal/packages/themes/*.json ~/.config/opencode/themes/
+```
+
+Then configure the theme:
 
 ```json
 {
@@ -193,7 +177,7 @@ The plugin supports the following configuration options in `tui.json`:
   "theme": "neo-rose",
   "plugin": [
     [
-      "~/.config/opencode/oc-neo-terminal-dev/packages/plugin",
+      "@nelsonaguirre/oc-plugin-neo-terminal",
       {
         "enabled": true,
         "scanlines": true,
@@ -208,13 +192,13 @@ The plugin supports the following configuration options in `tui.json`:
 
 ### Available Options
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `enabled` | `boolean` | `true` | Enable/disable the plugin entirely |
-| `scanlines` | `boolean` | `true` | Show holographic CRT scanline effect |
-| `scanline_speed` | `number` | `0.008` | Animation speed of scanlines (0-1, higher = faster) |
-| `vignette` | `number` | `0.65` | Corner darkness intensity (0-1, higher = darker corners) |
-| `sidebar` | `boolean` | `true` | Show the NEXUS-style side panel with system metrics |
+| Option           | Type      | Default | Description                                              |
+| ---------------- | --------- | ------- | -------------------------------------------------------- |
+| `enabled`        | `boolean` | `true`  | Enable/disable the plugin entirely                       |
+| `scanlines`      | `boolean` | `true`  | Show holographic CRT scanline effect                     |
+| `scanline_speed` | `number`  | `0.008` | Animation speed of scanlines (0-1, higher = faster)      |
+| `vignette`       | `number`  | `0.65`  | Corner darkness intensity (0-1, higher = darker corners) |
+| `sidebar`        | `boolean` | `true`  | Show the NEXUS-style side panel with system metrics      |
 
 ### Examples
 
@@ -224,7 +208,7 @@ The plugin supports the following configuration options in `tui.json`:
 {
   "plugin": [
     [
-      "~/.config/opencode/oc-neo-terminal-dev/packages/plugin",
+      "@nelsonaguirre/oc-plugin-neo-terminal",
       {
         "scanlines": false,
         "vignette": 0.8
@@ -240,7 +224,7 @@ The plugin supports the following configuration options in `tui.json`:
 {
   "plugin": [
     [
-      "~/.config/opencode/oc-neo-terminal-dev/packages/plugin",
+      "@nelsonaguirre/oc-plugin-neo-terminal",
       {
         "scanlines": false,
         "vignette": 0,
@@ -257,77 +241,13 @@ The plugin supports the following configuration options in `tui.json`:
 {
   "plugin": [
     [
-      "~/.config/opencode/oc-neo-terminal-dev/packages/plugin",
+      "@nelsonaguirre/oc-plugin-neo-terminal",
       {
         "scanline_speed": 0.02,
         "vignette": 0.9
       }
     ]
   ]
-}
-```
-
-## Packages
-
-### Plugin (`packages/plugin/`)
-
-The plugin provides:
-- **Holographic Scanlines**: Retro-futuristic CRT effect
-- **Neural Command**: `/neural` triggers a pulsating brain animation
-- **Vignette Effect**: Dark corners for immersive focus
-- **Side Panel**: NEXUS-style monitoring dashboard
-- **Customizable Brand**: Configure your own ASCII art and brand name
-
-See [packages/plugin/README.md](packages/plugin/README.md) for plugin-specific docs.
-
-### Themes (`packages/themes/`)
-
-#### Available Themes
-
-- **`neo-rose`** (default) - Neon pink + cyan + violet accents on dark void
-- **`neo-matrix`** - Classic green with teal, lime neon, and violet accents
-- **`neo-amber`** - Vintage amber phosphor with gold, coral, and olive accents
-- **`neo-cyan`** - Futuristic cyan with electric blue and magenta accents
-
-See individual theme READMEs for details.
-
-## Development
-
-This is a local monorepo. No npm publish needed.
-
-To work on a specific package:
-
-```bash
-cd packages/plugin
-# or
-cd packages/themes/neo-rose
-```
-
-To update after pulling changes:
-
-```bash
-git pull
-```
-
-## Development Workflow with Symlinks
-
-For development, create symlinks so changes are reflected instantly:
-
-```bash
-# Symlink the repo
-cd ~/.config/opencode
-ln -s ~/Documents/repos/oc-neo-terminal oc-neo-terminal-dev
-
-# Symlink themes
-ln -s ~/Documents/repos/oc-neo-terminal/packages/themes/*/themes/*.json themes/
-```
-
-Then in `tui.json`:
-
-```json
-{
-  "theme": "neo-rose",
-  "plugin": ["~/.config/opencode/oc-neo-terminal-dev/packages/plugin"]
 }
 ```
 
@@ -343,3 +263,4 @@ This project builds upon the foundation of **[oc-plugin-vault-tec](https://githu
 ## License
 
 MIT
+

@@ -1,6 +1,5 @@
 import { readFileSync, existsSync } from "fs"
 import { join } from "path"
-import { homedir } from "os"
 
 export type BrandConfig = {
   name: string
@@ -101,33 +100,16 @@ export const DEFAULT_BRAND: BrandConfig = {
   },
 }
 
-export function loadBrandConfig(): BrandConfig {
-  const configDir = join(homedir(), ".config", "opencode", "oc-neo-terminal")
+export function loadBrandConfig(globalDir: string, localDir?: string): BrandConfig {
   const config: BrandConfig = {
     name: DEFAULT_BRAND.name,
     art: { ...DEFAULT_BRAND.art },
   }
 
-  // Load brand.json for name + optional "home" fallback
-  let homeFallbackFile: string | null = null
-  const brandJsonPath = join(configDir, "brand.json")
-  if (existsSync(brandJsonPath)) {
-    try {
-      const brandJson = JSON.parse(readFileSync(brandJsonPath, "utf-8"))
-      if (brandJson.name && typeof brandJson.name === "string") {
-        config.name = brandJson.name.slice(0, 20) // Max 20 chars
-      }
-      if (brandJson.home && typeof brandJson.home === "string") {
-        homeFallbackFile = brandJson.home
-      }
-    } catch {
-      // Invalid JSON, use default
-    }
-  }
-
-  // Helper: read lines from a text file, returns null if not found or empty
-  const readArtFile = (filename: string): string[] | null => {
-    const filepath = join(configDir, filename)
+  // Task 1.3: Internal closure — read lines from a file in a given directory
+  // Returns string[] if file exists and has content, null otherwise
+  const readFromDir = (dir: string, filename: string): string[] | null => {
+    const filepath = join(dir, filename)
     if (!existsSync(filepath)) return null
     try {
       const content = readFileSync(filepath, "utf-8")
@@ -138,21 +120,84 @@ export function loadBrandConfig(): BrandConfig {
     }
   }
 
-  // Load ASCII art files — priority: specific file > home fallback > default
-  const artSpecFiles = {
+  // Read brand.json from a directory, returns parsed object or null
+  const readBrandJson = (dir: string): Record<string, unknown> | null => {
+    const filepath = join(dir, "brand.json")
+    if (!existsSync(filepath)) return null
+    try {
+      const parsed = JSON.parse(readFileSync(filepath, "utf-8"))
+      if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+        return parsed as Record<string, unknown>
+      }
+      return null
+    } catch {
+      return null
+    }
+  }
+
+  // Task 1.4: Two-tier tiered resolution helper
+  // Tries localDir first, then globalDir, with optional homeFallback per tier for size variants
+  const resolveTiered = (filename: string, homeFallback: string | null): string[] | null => {
+    // Local tier
+    if (localDir) {
+      const localResult = readFromDir(localDir, filename)
+      if (localResult) return localResult
+      if (homeFallback) {
+        const localFallback = readFromDir(localDir, homeFallback)
+        if (localFallback) return localFallback
+      }
+    }
+    // Global tier
+    const globalResult = readFromDir(globalDir, filename)
+    if (globalResult) return globalResult
+    if (homeFallback) {
+      const globalFallback = readFromDir(globalDir, homeFallback)
+      if (globalFallback) return globalFallback
+    }
+    return null
+  }
+
+  // Task 1.5: Resolve brand name — local brand.json wins, then global, then default
+  // Also extract homeFallbackFile from whichever brand.json is authoritative for the name
+  const resolveName = (): { name: string; homeFallback: string | null } => {
+    if (localDir) {
+      const localBrand = readBrandJson(localDir)
+      if (localBrand?.name && typeof localBrand.name === "string") {
+        return {
+          name: localBrand.name.slice(0, 20),
+          homeFallback: typeof localBrand.home === "string" ? localBrand.home : null,
+        }
+      }
+    }
+    const globalBrand = readBrandJson(globalDir)
+    if (globalBrand?.name && typeof globalBrand.name === "string") {
+      return {
+        name: globalBrand.name.slice(0, 20),
+        homeFallback: typeof globalBrand.home === "string" ? globalBrand.home : null,
+      }
+    }
+    return { name: DEFAULT_BRAND.name, homeFallback: null }
+  }
+
+  // Task 1.7: Apply resolved name
+  const { name, homeFallback: homeFallbackFile } = resolveName()
+  config.name = name
+
+  // Task 1.6: Resolve each art asset independently via resolveTiered()
+  const artSpecFiles: Record<keyof BrandConfig["art"], string> = {
     small: "home-small.txt",
     medium: "home-medium.txt",
     large: "home-large.txt",
     side: "side.txt",
   }
 
-  const homeSizes = ["small", "medium", "large"]
+  const homeSizes: Array<keyof BrandConfig["art"]> = ["small", "medium", "large"]
 
-  for (const [key, filename] of Object.entries(artSpecFiles)) {
+  for (const [key, filename] of Object.entries(artSpecFiles) as Array<[keyof BrandConfig["art"], string]>) {
     const isHomeSize = homeSizes.includes(key)
-    const lines = readArtFile(filename) ?? (isHomeSize && homeFallbackFile ? readArtFile(homeFallbackFile) : null)
+    const lines = resolveTiered(filename, isHomeSize ? homeFallbackFile : null)
     if (lines) {
-      config.art[key as keyof typeof config.art] = lines
+      config.art[key] = lines
     }
   }
 

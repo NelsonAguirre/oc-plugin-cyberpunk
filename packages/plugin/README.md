@@ -1,58 +1,94 @@
 # Neo-Terminal Plugin for OpenCode
 
-A neo-terminal personality matrix that transforms your coding terminal into a NEXUS neural interface — holographic scanlines, neon color overlays, neural effects with `/neural` command, and a multi-agent dashboard that monitors your context, generation, and costs in real time.
+A retro-futuristic, cyberpunk-styled plugin for OpenCode — featuring holographic CRT scanlines, neural animations, and a NEXUS-style monitoring dashboard.
 
-**Note:** This plugin is theme-agnostic. Install it with a companion theme for the full experience.
+<img src="https://raw.githubusercontent.com/nelsonaguirre/oc-neo-terminal/main/assets/demo-home.gif" alt="Neo-Terminal home screen" width="800">
 
 ## Installation
 
-### With Theme (Recommended)
+```bash
+npm install @nelsonaguirre/oc-plugin-neo-terminal
+```
 
-For the complete neo-terminal experience:
+Add the plugin to your OpenCode configuration:
+
+### tui.json
 
 ```json
 {
-  "plugin": ["oc-theme-neo-rose", "oc-neo-terminal"]
+  "$schema": "https://opencode.ai/tui.json",
+  "plugin": ["@nelsonaguirre/oc-plugin-neo-terminal"]
 }
 ```
 
-### Plugin Only
-
-The plugin works with any dark theme:
+Or with configuration options:
 
 ```json
 {
-  "plugin": ["oc-neo-terminal"]
+  "plugin": [
+    [
+      "@nelsonaguirre/oc-plugin-neo-terminal",
+      {
+        "enabled": true,
+        "scanlines": true,
+        "scanline_speed": 0.008,
+        "vignette": 0.65,
+        "sidebar": true
+      }
+    ]
+  ]
 }
 ```
+
+## Configuration Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `enabled` | `boolean` | `true` | Enable/disable the plugin |
+| `scanlines` | `boolean` | `true` | Show holographic CRT scanline effect |
+| `scanline_speed` | `number` | `0.008` | Animation speed of scanlines (0-1) |
+| `vignette` | `number` | `0.65` | Corner darkness intensity (0-1) |
+| `sidebar` | `boolean` | `true` | Show NEXUS-style side panel |
 
 ## Features
 
-- **NEXUS Dashboard**: Real-time monitoring of MEM, GEN, HIT, and COST metrics
-- **Holographic Scanlines**: Retro-futuristic CRT effect with configurable speed
-- **Neural Command**: Type `/neural` to trigger a pulsating brain animation
-- **Vignette Effect**: Subtle dark corners for immersive focus
-- **Side Panel**: Collapsible sidebar with system status
+### Neural Command
 
-## TUI Options
+Type `/neural` to trigger a pulsating brain animation with glitch effects:
 
-Configure via `tui.json`:
+<img src="https://raw.githubusercontent.com/nelsonaguirre/oc-neo-terminal/main/assets/demo-neural.gif" alt="Neural command" width="800">
 
-- `enabled` (`boolean`, default `true`) - Enable the plugin
-- `scanlines` (`boolean`, default `true`) - Holographic scanline effect
-- `scanline_speed` (`number`, default `0.008`) - Animation speed
-- `vignette` (`number`, default `0.65`) - Corner darkness (0-1)
-- `sidebar` (`boolean`, default `true`) - Show side panel
+### Sidebar Dashboard
 
-## Commands
+NEXUS-style monitoring dashboard with system metrics and custom ASCII art sidebar:
 
-- `/neural` - Trigger the neural brain animation with glitch effects
+<img src="https://raw.githubusercontent.com/nelsonaguirre/oc-neo-terminal/main/assets/demo-session-side.gif" alt="Sidebar dashboard" width="800">
+
+### Holographic Scanlines
+
+Retro-futuristic CRT effect that gives your editor a classic terminal feel.
+
+### Vignette Effect
+
+Dark corners for immersive focus and reduced eye strain.
 
 ## Customization
 
-You can customize the brand name and ASCII art by creating files in `~/.config/opencode/oc-neo-terminal/`:
+### Config Precedence
 
-### `brand.json`
+Neo-Terminal supports two config locations. **Local project config takes precedence over global config**, which takes precedence over the built-in defaults:
+
+| Priority | Location | When to use |
+|----------|----------|-------------|
+| 1 — Local | `<project-root>/.opencode/oc-neo-terminal/` | Per-project branding |
+| 2 — Global | `~/.config/opencode/oc-neo-terminal/` | Personal global defaults |
+| 3 — Built-in | Bundled defaults | Fallback when no files exist |
+
+Each asset resolves independently — you can override only `side.txt` locally while all other assets fall back to your global config or built-in defaults.
+
+### Brand Name
+
+**Global:** Create `~/.config/opencode/oc-neo-terminal/brand.json`:
 
 ```json
 {
@@ -61,47 +97,41 @@ You can customize the brand name and ASCII art by creating files in `~/.config/o
 }
 ```
 
-- **`name`** — Brand name displayed in the UI (max 20 chars). Defaults to `NEXUS`.
-- **`home`** — Fallback ASCII art file used for all home sizes when a specific size file doesn't exist.
+**Local (per-project):** Create `<project-root>/.opencode/oc-neo-terminal/brand.json`:
+
+```json
+{
+  "name": "my-project"
+}
+```
+
+- **`name`** — Brand name displayed in the UI (max 20 chars). Defaults to `NEXUS`. Local `brand.json` overrides global.
+- **`home`** — Fallback ASCII art file for size variants (used when no specific size file exists).
 
 ### ASCII Art Files
 
-Place `.txt` files in `~/.config/opencode/oc-neo-terminal/`:
+Place `.txt` files in either config directory. Local files override global files of the same name.
 
-| File              | Purpose                                                        |
-| ----------------- | -------------------------------------------------------------- |
-| `home-small.txt`  | Logo for terminals smaller than ~15 rows (default: 5 rows)     |
-| `home-medium.txt` | Logo for medium terminals ~15-30 rows (default: 31 rows)       |
-| `home-large.txt`  | Logo for large terminals >30 rows (default: 29 rows)           |
-| `side.txt`        | Sidebar icon that appears on the left panel (default: 11 rows) |
+**Global:** `~/.config/opencode/oc-neo-terminal/`
 
-### Resolution Priority
+**Local (per-project):** `<project-root>/.opencode/oc-neo-terminal/`
 
-For each home size, the plugin resolves the ASCII art in this order:
+| File | Purpose |
+|------|---------|
+| `home-small.txt` | Logo for terminals <15 rows |
+| `home-medium.txt` | Logo for terminals ~15-30 rows |
+| `home-large.txt` | Logo for terminals >30 rows |
+| `side.txt` | Sidebar icon (default: 11 rows) |
 
-1. **Specific file** — e.g. `home-medium.txt` if it exists
-2. **`home` fallback** — the file specified in `brand.json` `"home"` field
-3. **Built-in default** — the NEXUS ASCII art hardcoded in the plugin
+## Requirements
 
-### Example Directory
+- OpenCode >=1.3.14
 
-```
-~/.config/opencode/oc-neo-terminal/
-├── brand.json
-├── home.txt         ← fallback used for all sizes
-├── home-small.txt   ← overrides fallback for small terminals
-├── home-medium.txt  ← overrides fallback for medium terminals
-├── home-large.txt   ← overrides fallback for large terminals
-└── side.txt
-```
+## Related
 
-If files don't exist, the plugin uses the default NEXUS branding.
+- **[Themes](https://github.com/nelsonaguirre/oc-neo-terminal#themes)** — Color themes: neo-rose, neo-matrix, neo-amber, neo-cyan
+- **[Main Repository](https://github.com/nelsonaguirre/oc-neo-terminal)** — Full project with themes + plugin
 
-## Themes
+## License
 
-This plugin is theme-agnostic and works with any OpenCode theme. Companion themes:
-
-- `neo-rose` - Neon pink, cyan, and violet accents on dark void
-- `neo-matrix` - Green with teal, lime neon, and violet accents
-- `neo-amber` - Vintage amber phosphor with gold, coral, and olive accents
-- `neo-cyan` - Futuristic cyan with electric blue and magenta accents
+MIT

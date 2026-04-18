@@ -1,1 +1,0 @@
-strict-tdd=true
