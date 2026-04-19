@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@nelsonaguirre/oc-plugin-neo-terminal",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "type": "module",
   "publishConfig": {
     "access": "public",
