@@ -2,117 +2,87 @@
 import { useKeyboard } from "@opentui/solid"
 import type { TuiPlugin } from "@opencode-ai/plugin/tui"
 import { createMemo, createSignal } from "solid-js"
+import {
+  buildOptions,
+  rows,
+  settingByField,
+  type Field,
+  type NumberField,
+  type SelectableField,
+  type SettingsState,
+  type ToggleField,
+} from "./settings-state"
 
 type Api = Parameters<TuiPlugin>[0]
 
-export type SettingsState = {
-  scan: boolean
-  scanSpeed: number
-  vignette: number
-  sidebar: boolean
-}
-
-export type ToggleField = "scan" | "sidebar"
-export type NumberField = "scanSpeed" | "vignette"
-export type Field = ToggleField | NumberField
-
-type SettingRow = {
-  key: Field
-  title: string
-  description: string
-  category: string
-  kind: "toggle" | "number"
-  step?: number
-  min?: number
-  max?: number
-  digits?: number
-}
-
-const rows: SettingRow[] = [
-  {
-    key: "scan",
-    title: "Holographic scan",
-    description: "Multi-band holographic scanlines",
-    category: "Visual",
-    kind: "toggle",
-  },
-  {
-    key: "scanSpeed",
-    title: "Scan speed",
-    description: "Animation speed for scanlines",
-    category: "Visual",
-    kind: "number",
-    step: 0.002,
-    min: 0,
-    digits: 3,
-  },
-  {
-    key: "vignette",
-    title: "Vignette strength",
-    description: "Screen edge darkening strength",
-    category: "Visual",
-    kind: "number",
-    step: 0.05,
-    min: 0,
-    max: 1,
-    digits: 2,
-  },
-  {
-    key: "sidebar",
-    title: "NEXUS side panel",
-    description: "Companion art and monitor card",
-    category: "Layout",
-    kind: "toggle",
-  },
-]
-
-export const settingByField = Object.fromEntries(rows.map((item) => [item.key, item])) as Record<Field, SettingRow>
-
-export const createSettingKey = (id: string) => {
-  return {
-    scan: `${id}.setting.scanlines`,
-    scanSpeed: `${id}.setting.scanline_speed`,
-    vignette: `${id}.setting.vignette`,
-    sidebar: `${id}.setting.sidebar`,
-  } as const
-}
-
-const status = (value: boolean) => {
-  return value ? "ON" : "OFF"
-}
-
-const metric = (value: SettingsState, key: NumberField) => {
-  if (key === "scanSpeed") return value.scanSpeed.toFixed(3)
-  return value.vignette.toFixed(2)
-}
+export type { Field, NumberField, SelectableField, SettingsState, ToggleField }
+export { buildOptions, createSettingKey, rows, settingByField } from "./settings-state"
 
 export const SettingsDialog = (props: {
   api: Api
   value: () => SettingsState
   flip: (key: ToggleField) => void
   tune: (key: NumberField, dir: -1 | 1) => void
+  reset: () => void
 }) => {
-  const [cur, setCur] = createSignal<Field>(rows[0]?.key ?? "scan")
+  const [cur, setCur] = createSignal<SelectableField>(rows[0]?.key ?? "scan")
   const theme = createMemo(() => props.api.theme.current)
 
-  const current = createMemo(() => settingByField[cur()] ?? rows[0])
-  const options = createMemo(() => {
-    const value = props.value()
-    return rows.map((item) => {
-      const footer = item.kind === "toggle" ? status(value[item.key]) : metric(value, item.key)
-      return {
-        title: item.title,
-        value: item.key,
-        description: item.description,
-        category: item.category,
-        footer,
-      }
-    })
+  const current = createMemo(() => {
+    const c = cur()
+    if (c === "__reset") return undefined
+    return settingByField[c] ?? rows[0]
   })
+  const options = createMemo(() => buildOptions(props.value()))
+
+  const showResetConfirm = () => {
+    props.api.ui.dialog.replace(() => (
+      <props.api.ui.DialogConfirm
+        title="Reset to defaults"
+        message="Restore all settings to their default values?"
+        onConfirm={() => {
+          try {
+            props.reset()
+          } catch (err) {
+            // Log error but still replace dialog to avoid stranding user
+            console.error("Reset failed:", err)
+          }
+          // Always replace dialog regardless of reset success/failure
+          props.api.ui.dialog.replace(() => (
+            <SettingsDialog
+              api={props.api}
+              value={props.value}
+              flip={props.flip}
+              tune={props.tune}
+              reset={props.reset}
+            />
+          ))
+        }}
+        onCancel={() => {
+          props.api.ui.dialog.replace(() => (
+            <SettingsDialog
+              api={props.api}
+              value={props.value}
+              flip={props.flip}
+              tune={props.tune}
+              reset={props.reset}
+            />
+          ))
+        }}
+      />
+    ))
+  }
 
   useKeyboard((evt) => {
     const item = current()
-    if (!item) return
+    if (!item) {
+      if (evt.name === "space" || evt.name === "enter") {
+        evt.preventDefault()
+        evt.stopPropagation()
+        showResetConfirm()
+      }
+      return
+    }
 
     if (evt.name === "space" && item.kind === "toggle") {
       evt.preventDefault()
@@ -134,14 +104,18 @@ export const SettingsDialog = (props: {
   return (
     <box flexDirection="column">
       <props.api.ui.DialogSelect
-        title="Cyberpunk settings"
+        title="Neo settings"
         placeholder="Filter settings"
         options={options()}
         current={cur()}
-        onMove={(item) => setCur(item.value)}
+        onMove={(item) => setCur(item.value as SelectableField)}
         onSelect={(item) => {
-          setCur(item.value)
-          const next = settingByField[item.value]
+          if (item.value === "__reset") {
+            showResetConfirm()
+            return
+          }
+          setCur(item.value as SelectableField)
+          const next = settingByField[item.value as Field]
           if (next?.kind === "toggle") {
             props.flip(next.key)
           }

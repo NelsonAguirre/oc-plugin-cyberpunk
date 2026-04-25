@@ -1,6 +1,6 @@
 # Neo-Terminal Plugin for OpenCode
 
-A retro-futuristic, cyberpunk-styled plugin for OpenCode — featuring holographic CRT scanlines, neural animations, and a NEXUS-style monitoring dashboard.
+A retro-futuristic, retro-styled plugin for OpenCode — featuring holographic CRT scanlines, neural animations, and a custom monitoring dashboard.
 
 <img src="https://raw.githubusercontent.com/nelsonaguirre/oc-neo-terminal/main/assets/demo-home.gif" alt="Neo-Terminal home screen" width="800">
 
@@ -18,7 +18,7 @@ opencode plugin @nelsonaguirre/oc-plugin-neo-terminal -g
 | `scanlines`      | `boolean` | `true`  | Show holographic CRT scanline effect |
 | `scanline_speed` | `number`  | `0.008` | Animation speed of scanlines (0-1)   |
 | `vignette`       | `number`  | `0.65`  | Corner darkness intensity (0-1)      |
-| `sidebar`        | `boolean` | `true`  | Show NEXUS-style side panel          |
+| `sidebar`        | `boolean` | `true`  | Show custom side panel          |
 
 Default config in `tui.json`:
 
@@ -49,7 +49,7 @@ Type `/neural` to trigger a pulsating brain animation with glitch effects:
 
 ### Sidebar Dashboard
 
-NEXUS-style monitoring dashboard with system metrics and custom ASCII art sidebar:
+Custom monitoring dashboard with system metrics and custom ASCII art sidebar:
 
 <img src="https://raw.githubusercontent.com/nelsonaguirre/oc-neo-terminal/main/assets/demo-session-side.gif" alt="Sidebar dashboard" width="800">
 

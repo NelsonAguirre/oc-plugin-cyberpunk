@@ -5,14 +5,15 @@ import type { TuiPlugin, TuiPluginModule, TuiSlotPlugin, TuiThemeCurrent } from 
 import { Show, createMemo, createSignal } from "solid-js"
 import { join } from "path"
 import {
-  SettingsDialog,
   createSettingKey,
   settingByField,
   type Field,
   type NumberField,
   type SettingsState,
   type ToggleField,
-} from "./settings-dialog"
+} from "./settings-state"
+import { SettingsDialog } from "./settings-dialog"
+import { createReset } from "./tui-reset"
 import { NexusContext } from "./context"
 import { createNeuralCommand } from "./neural-command"
 import { Side } from "./side"
@@ -67,7 +68,7 @@ const cfg = (opts: Record<string, unknown> | undefined): Cfg => {
     enabled: bool(opts?.enabled, true),
     scan: bool(opts?.scanlines, true),
     scanSpeed: Math.max(0, num(opts?.scanline_speed, 0.008)),
-    vignette: Math.max(0, num(opts?.vignette, 0.65)),
+    vignette: clamp(num(opts?.vignette, 0.65), 0, 1),
     sidebar: bool(opts?.sidebar, true),
   }
 }
@@ -428,6 +429,8 @@ const tui: TuiPlugin = async (api, options) => {
     }
   }
 
+  const reset = createReset(api, settingKey, boot, setValue, applyScan)
+
   const update = (key: Field, next: unknown) => {
     const prev = value()
     if (prev[key] === next) return
@@ -458,7 +461,7 @@ applyScan()
   }
 
   const showSettings = () => {
-    api.ui.dialog.replace(() => <SettingsDialog api={api} value={value} flip={flip} tune={tune} />)
+    api.ui.dialog.replace(() => <SettingsDialog api={api} value={value} flip={flip} tune={tune} reset={reset} />)
   }
 
   applyScan()
