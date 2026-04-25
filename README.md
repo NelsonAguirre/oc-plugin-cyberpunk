@@ -74,12 +74,12 @@ opencode plugin @nelsonaguirre/oc-plugin-neo-terminal -g
 cp /path/to/oc-neo-terminal/packages/themes/neo-rose.json ~/.config/opencode/themes/
 ```
 
-3. Configure both in your `tui.json`:
+3. Configure the theme in your `tui.json`:
 
 ```json
 {
   "$schema": "https://opencode.ai/tui.json",
-  "theme": "neo-rose",
+  "theme": "neo-rose",                                <- Set Theme
   "plugin": ["@nelsonaguirre/oc-plugin-neo-terminal"]
 }
 ```
@@ -113,9 +113,6 @@ If you only want the themes without plugin effects, copy or symlink the theme JS
 ```bash
 # Copy
 cp /path/to/oc-neo-terminal/packages/themes/neo-rose.json ~/.config/opencode/themes/
-
-# Or symlink (recommended — updates automatically when you pull)
-ln -s /path/to/oc-neo-terminal/packages/themes/neo-rose.json ~/.config/opencode/themes/
 ```
 
 Then configure the theme in your `tui.json`:
@@ -222,10 +219,10 @@ _Home ASCII based on [Gentleman.Dots](https://github.com/Gentleman-Programming/G
 
 The plugin supports two config levels — **local** (per-project) and **global** (user-wide):
 
-| Level      | Path                                          | Scope                    |
-| ---------- | --------------------------------------------- | ------------------------ |
-| **Local**  | `<project-root>/.opencode/oc-neo-terminal/`   | Only the current project |
-| **Global** | `~/.config/opencode/oc-neo-terminal/`         | All projects             |
+| Level      | Path                                        | Scope                    |
+| ---------- | ------------------------------------------- | ------------------------ |
+| **Local**  | `<project-root>/.opencode/oc-neo-terminal/` | Only the current project |
+| **Global** | `~/.config/opencode/oc-neo-terminal/`       | All projects             |
 
 Local config always takes priority over global. Each asset (brand name, ASCII files) resolves independently.
 

@@ -7,21 +7,20 @@ A retro-futuristic, cyberpunk-styled plugin for OpenCode — featuring holograph
 ## Installation
 
 ```bash
-npm install @nelsonaguirre/oc-plugin-neo-terminal
+opencode plugin @nelsonaguirre/oc-plugin-neo-terminal -g
 ```
 
-Add the plugin to your OpenCode configuration:
+## Configuration Options
 
-### tui.json
+| Option           | Type      | Default | Description                          |
+| ---------------- | --------- | ------- | ------------------------------------ |
+| `enabled`        | `boolean` | `true`  | Enable/disable the plugin            |
+| `scanlines`      | `boolean` | `true`  | Show holographic CRT scanline effect |
+| `scanline_speed` | `number`  | `0.008` | Animation speed of scanlines (0-1)   |
+| `vignette`       | `number`  | `0.65`  | Corner darkness intensity (0-1)      |
+| `sidebar`        | `boolean` | `true`  | Show NEXUS-style side panel          |
 
-```json
-{
-  "$schema": "https://opencode.ai/tui.json",
-  "plugin": ["@nelsonaguirre/oc-plugin-neo-terminal"]
-}
-```
-
-Or with configuration options:
+Default config in `tui.json`:
 
 ```json
 {
@@ -39,16 +38,6 @@ Or with configuration options:
   ]
 }
 ```
-
-## Configuration Options
-
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `enabled` | `boolean` | `true` | Enable/disable the plugin |
-| `scanlines` | `boolean` | `true` | Show holographic CRT scanline effect |
-| `scanline_speed` | `number` | `0.008` | Animation speed of scanlines (0-1) |
-| `vignette` | `number` | `0.65` | Corner darkness intensity (0-1) |
-| `sidebar` | `boolean` | `true` | Show NEXUS-style side panel |
 
 ## Features
 
@@ -78,11 +67,11 @@ Dark corners for immersive focus and reduced eye strain.
 
 Neo-Terminal supports two config locations. **Local project config takes precedence over global config**, which takes precedence over the built-in defaults:
 
-| Priority | Location | When to use |
-|----------|----------|-------------|
-| 1 — Local | `<project-root>/.opencode/oc-neo-terminal/` | Per-project branding |
-| 2 — Global | `~/.config/opencode/oc-neo-terminal/` | Personal global defaults |
-| 3 — Built-in | Bundled defaults | Fallback when no files exist |
+| Priority     | Location                                    | When to use                  |
+| ------------ | ------------------------------------------- | ---------------------------- |
+| 1 — Local    | `<project-root>/.opencode/oc-neo-terminal/` | Per-project branding         |
+| 2 — Global   | `~/.config/opencode/oc-neo-terminal/`       | Personal global defaults     |
+| 3 — Built-in | Bundled defaults                            | Fallback when no files exist |
 
 Each asset resolves independently — you can override only `side.txt` locally while all other assets fall back to your global config or built-in defaults.
 
@@ -116,12 +105,12 @@ Place `.txt` files in either config directory. Local files override global files
 
 **Local (per-project):** `<project-root>/.opencode/oc-neo-terminal/`
 
-| File | Purpose |
-|------|---------|
-| `home-small.txt` | Logo for terminals <15 rows |
-| `home-medium.txt` | Logo for terminals ~15-30 rows |
-| `home-large.txt` | Logo for terminals >30 rows |
-| `side.txt` | Sidebar icon (default: 11 rows) |
+| File              | Purpose                         |
+| ----------------- | ------------------------------- |
+| `home-small.txt`  | Logo for terminals <15 rows     |
+| `home-medium.txt` | Logo for terminals ~15-30 rows  |
+| `home-large.txt`  | Logo for terminals >30 rows     |
+| `side.txt`        | Sidebar icon (default: 11 rows) |
 
 ## Requirements
 
@@ -135,3 +124,4 @@ Place `.txt` files in either config directory. Local files override global files
 ## License
 
 MIT
+
